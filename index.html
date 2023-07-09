@@ -47,12 +47,12 @@
                 <button type="button" class="btn btn-secondary" style="margin-left: 6px" onclick="resetSearchName();">Annuler</button>
             </div>
         </div>
-        <p><strong>Filtre par défault:</strong> Seuls les serviteurs correspondant aux éléments "cochés" apparaîtront.</p>
+        <p><strong>Filtre par défault:</strong> Seuls les serviteurs correspondant aux éléments sélectionnés apparaîtront.</p>
         <div class="row">
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Informations de base sur le serviteur</h3>
+                        <h3 class="panel-title">Informations de base</h3>
                     </div>
                     <div class="panel-body">
                         <h5>- Élément <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterElement');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterElement');">[Tout décocher]</a></small></span></h5>
@@ -67,7 +67,7 @@
             <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Type d'attaque</h3>
+                        <h3 class="panel-title">Type de dégâts</h3>
                     </div>
                     <div class="panel-body" id="filterJob">
                         <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterJob');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterJob');">[Tout décocher]</a></small></span>
@@ -89,7 +89,7 @@
             </div>
         </div>
         
-        <p><strong>Filtres détaillés :</strong> les filtres tels que les effets d'affaiblissement/d'amélioration, les capacités spéciales et les effets relationnels peuvent être développés/réduits en cliquant dessus.   <small>(Affiche les serviteurs qui incluent au moins un élément "coché" ; s'il n'y a pas de sélection, tous sont affichés)</small></p>
+        <p><strong>Filtres détaillés :</strong> les filtres tels que les effets d'affaiblissement/d'amélioration, les capacités spéciales et les effets relationnels peuvent être développés/réduits en cliquant dessus.   <small>(Affiche les serviteurs qui incluent au moins un élément sélectionné. S'il n'y a pas de sélection, tous sont affichés)</small></p>
         <div class="row">
             <div class="col-sm-6 panel-group" id="accordionDebuff" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-danger">
