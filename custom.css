@@ -1,0 +1,129 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 60px 15px 0;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+/* CSS added byAskai
+    Copyrightⓒ 2021. Askai. All rights reserved.
+*/
+.media-body > p {
+    margin-bottom: 2px;
+}
+
+.cell-header {
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+td > .row {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+hr.separator {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+img.role-icon {
+    margin-right: 4px;
+    background-color: #444;
+}
+
+.media.skill-list {
+    margin-top: 2px;
+}
+
+small.condition {
+    color: darksalmon;
+}
+small.condition-ally {
+    color: dodgerblue;
+}
+small.additional {
+    color: royalblue;
+}
+
+.modal-body > h5 {
+    background-color: paleturquoise;
+    padding: 2px 12px;
+}
+div#modalVersionHistory .modal-body {
+    overflow-y: scroll;
+    height: 70vh;
+}
+
+.filter-label {
+    margin: 4px 8px;
+}
+.filter-hide, 
+.filter-hide-el, .filter-hide-ro, 
+.filter-hide-br, .filter-hide-brse, 
+.filter-hide-jb, 
+.filter-hide-efde, .filter-hide-efbu, 
+.filter-hide-te, .filter-hide-efut, 
+.filter-hide-re, 
+.filter-hide-sn
+{
+    display: none;
+}
+.panel-body > h5 {
+    background-color: lavender;
+    padding: 2px 12px;
+    font-weight: bold;
+}
+span#resultFilter {
+    color: indigo;
+    font-weight: normal;
+}
+
+.panel-body .float-top-right {
+    float: right;
+    margin-top: -8px;
+    margin-right: 12px;
+}
+.panel-body h5 > .float-top-right {
+    float: right;
+    margin-top: -2px;
+    margin-right: 0px;
+}
+.title-inline {
+    display: inline;
+    margin-right: 24px;
+}

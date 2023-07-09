@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="109" height="20">
+ <linearGradient id="smooth" x2="0" y2="100%">
+   <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+   <stop offset="1" stop-opacity=".1"/>
+ </linearGradient>
+
+ <mask id="round">
+   <rect width="109" height="20" rx="3" ry="3" fill="#fff"/>
+ </mask>
+
+ <g mask="url(#round)">
+   <rect width="43" height="20" fill="#555555"/>
+   <rect x="43" width="66" height="20" fill="#22AADD"/>
+   <rect width="109" height="20" fill="url(#smooth)"/>
+ </g>
+
+ <g fill="#fff" text-anchor="middle" font-family="Verdana,DejaVu Sans,Geneva,sans-serif" font-size="11"> 
+   <text x="22.5" y="15" fill="#010101" fill-opacity=".3">조회수</text>
+   <text x="22.5" y="14" fill="#fff">조회수</text>
+   <text x="75" y="15" fill="#010101" fill-opacity=".3"> 2 / 4490 </text>
+   <text x="75" y="14" fill="#fff"> 2 / 4490 </text>
+ </g>
+</svg>

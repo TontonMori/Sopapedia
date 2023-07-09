@@ -1,0 +1,380 @@
+const APP_VERSION = '6.4';
+const UPDATE_DATE = '2022-01-11';
+
+const PATH_IMAGE = 'res/img/';
+const IMAGE_EMPTY_CHARACTER = 'character_empty.png';
+const IMAGE_EMPTY_SKILL = 'ico_empty_info.png';
+const IMAGE_EMPTY_EFFECT = 'ico_empty_book.png';
+const IMAGE_TEAM_BUFF = 'ico_team_buff.png';
+
+const ATTR_FILTER_ELEMENT = 'data-filter-element';
+const ATTR_FILTER_ROLE = 'data-filter-role';
+const ATTR_FILTER_BRAND = 'data-filter-brand';
+const ATTR_FILTER_BRAND_SEQUEL = 'data-filter-brand-sequel';
+const ATTR_FILTER_JOB = 'data-filter-job';
+const ATTR_FILTER_DEBUFF = 'data-filter-debuff';
+const ATTR_FILTER_BUFF = 'data-filter-buff';
+const ATTR_FILTER_TEAMBUFF = 'data-filter-teambuff';
+const ATTR_FILTER_UTILS = 'data-filter-utils';
+const ATTR_FILTER_RELATION = 'data-filter-rel';
+const ATTR_SERVANT_NAME = 'data-servant-name';
+
+const FILTER_LIST_UTILS = {
+    SKILL_CHARGE_SELF: { text: 'Augmente la jauge d\'aptitude (soi-même)', prefix: '', interfix: 'Augmente la jauge d\'aptitude', suffix: '', target: 'Soi-même' },
+    SKILL_CHARGE: { text: 'Augmente la jauge d\'aptitude (allié(s))', prefix: '', interfix: 'Augmente la jauge d\'aptitude', suffix: '', target: 'Allié' },
+    SKILL_DISCHARGE: { text: 'Réduit la jauge d\'aptitude ennemie', prefix: '', interfix: 'Réduit la jauge d\'aptitude', suffix: '', target: '' },
+    BRAND_CHARGE: { text: 'Commence le combat avec la jauge de combo chargée', prefix: '', interfix: 'Commence le combat avec la jauge de combo chargée', suffix: '', target: '' },
+    REVIVAL: { text: 'Résurection', prefix: '', interfix: 'Ressucite', suffix: '', target: '' },
+    REMOVE_BUFF: { text: 'Dissipe des buff (ennemis)', prefix: '', interfix: 'Dissipe', suffix: '', target: 'Ennemi' },
+    REMOVE_DEBUFF: { text: 'Dissipe des debuffs (alliés)', prefix: '', interfix: 'Dissipe', suffix: '', target: 'Allié' },
+    DECREASE_DMG: { text: 'Réduit les dégâts subis (alliés)', prefix: '', interfix: 'Réduit les dégâts subis', suffix: '', target: 'Allié' },
+	ATTACK_AOE: { text : 'Attaque de zone', prefix: '', interfix: 'Attaque de zone', suffix: '', target: '' },
+};
+Object.freeze(FILTER_LIST_UTILS);
+
+
+
+const ENUM_ELEMENT = {
+    FIRE: { key: 'FIRE', text: 'Feu', img: PATH_IMAGE + 'el_1_fire.png', color: '#B22222', color_bg: '#FFDFDF' },
+    WATER: { key: 'WATER', text: 'Eau', img: PATH_IMAGE + 'el_2_water.png', color: '#4199FF', color_bg: '#E1E1FF' },
+    FOREST: { key: 'FOREST', text: 'Forêt', img: PATH_IMAGE + 'el_3_forest.png', color: '#228B22', color_bg: '#EAFEE2' },
+    LIGHT: { key: 'LIGHT', text: 'Lumière', img: PATH_IMAGE + 'el_4_light.png', color: '#CEAB00', color_bg: '#EFEFCA' },
+    DARK: { key: 'DARK', text: 'Ténèbres', img: PATH_IMAGE + 'el_5_dark.png', color: '#4B0082', color_bg: '#EFCDF8' },
+};
+Object.freeze(ENUM_ELEMENT);
+
+
+const ENUM_BRAND = {
+    SUNRISE: { key: 'SUNRISE', text: 'Lever de soleil', img: PATH_IMAGE + 'brand_1_sunrise.png' },
+    SUNSET: { key: 'SUNSET', text: 'Coucher de soleil', img: PATH_IMAGE + 'brand_2_sunset.png' },
+    SOLAR_ECLIPSE: { key: 'SOLAR_ECLIPSE', text: 'Eclipse', img: PATH_IMAGE + 'brand_3_solar-eclipse.png' },
+    MOONSET: { key: 'MOONSET', text: 'Coucher de lune', img: PATH_IMAGE + 'brand_4_moonset.png' },
+};
+Object.freeze(ENUM_BRAND);
+
+const ENUM_BRAND_SEQUEL = {
+    SUNRISE: { key: 'SUNRISE', text: 'Lever de soleil', img: PATH_IMAGE + 'brand-sequel_1_sunrise.png' },
+    SUNSET: { key: 'SUNSET', text: 'Coucher de soleil', img: PATH_IMAGE + 'brand-sequel_2_sunset.png' },
+    SOLAR_ECLIPSE: { key: 'SOLAR_ECLIPSE', text: 'Eclipse', img: PATH_IMAGE + 'brand-sequel_3_solar-eclipse.png' },
+    MOONSET: { key: 'MOONSET', text: 'Coucher de lune', img: PATH_IMAGE + 'brand-sequel_4_moonset.png', },
+};
+Object.freeze(ENUM_BRAND_SEQUEL);
+
+
+const ENUM_SERVANT_ROLE = {
+    TANK: { key: 'TANK', text: 'Tank', img: PATH_IMAGE + 'role_1_tank.png' },
+    MELEE: { key: 'MELEE', text: 'Attaquant mélée', img: PATH_IMAGE + 'role_2_melee.png' },
+    RANGE: { key: 'RANGE', text: 'Attaquant distance', img: PATH_IMAGE + 'role_3_range.png' },
+    SUPPORT: { key: 'SUPPORT', text: 'Soutien', img: PATH_IMAGE + 'role_4_support.png' },
+    HEAL: { key: 'HEAL', text: 'Soigneur', img: PATH_IMAGE + 'role_5_heal.png' },
+    ATTACK: { key: 'ATTACK', text: 'Attaquant' },
+};
+Object.freeze(ENUM_SERVANT_ROLE);
+
+const ENUM_SERVANT_JOB = {
+    DPS_ATK: { key: 'DPS_ATK', text: 'Attaque' },
+    DPS_SPD: { key: 'DPS_SPD', text: 'Vitesse' },
+    DPS_DEF: { key: 'DPS_DEF', text: 'Défense' },
+    DPS_ENEMY_HP: { key: 'DPS_ENEMY_HP', text: 'PV Ennemis' },
+    DPS_IGNORE_DEF: { key: 'DPS_IGNORE_DEF', text: 'Ignore Def' },
+    DPS_IGNORE_DEF_COND: { key: 'DPS_IGNORE_DEF_COND', text: 'Ignore Def (sous conditions)' },
+    DPS_DOT: { key: 'DPS_DOT', text: 'Dégâts continus' },
+    REVIVAL_SINGLE: { text: 'Résurection (mono)' },
+    REVIVAL_ALL: { text: 'Résurection (multi)' },
+    TANK_ENDURE: { text: 'Résilience' },
+    NONE: { key: 'NONE', text: 'Aucun' },
+};
+Object.freeze(ENUM_SERVANT_JOB);
+
+const ENUM_BUFF = {
+    ATK: { text: 'Attaque↑', img: PATH_IMAGE + 'buff_01_atk.png', desc: 'Augmente l\'attaque de 10\% par niveau. (5 niveaux max)' },
+    ATK_WAVE: { text: 'Attaque↑ (Vague)', img: PATH_IMAGE + 'buff_01_atk.png', desc: 'L\'effet de vague augmente l\'attaque. (Niveau 2 : 33\%, Niveau 3 : 50\%)' },
+    DEF: { text: 'Défense↑', img: PATH_IMAGE + 'buff_02_def.png', desc: 'Augmente la défense de 14\% par niveau. (5 niveaux max)' },
+    DEF_WAVE: { text: 'Défense↑ (Vague)', img: PATH_IMAGE + 'buff_02_def.png', desc: 'L\'effet de vague augmente la défense. (Niveau 2 : 46\%, Niveau 3 : 70\%)' },
+    CRITICAL: { text: 'Taux critique↑', img: PATH_IMAGE + 'buff_03_critical.png', desc: 'Augmente le taux critique de 6\% par niveau. (5 niveaux max)' },
+    SPD: { text: 'Vitesse↑', img: PATH_IMAGE + 'buff_04_spd.png', desc: 'Augmente la vitesse de 6\% par niveau. (5 niveaux max)' },
+    SPD_WAVE: { text: 'Vitesse↑ (Vague)', img: PATH_IMAGE + 'buff_04_spd.png', desc: 'L\'effet de vague augmente la vitesse. (Niveau 3 :  30\%)' },
+    PROVOKE: { text: 'Provocation', img: PATH_IMAGE + 'buff_05_provoke.png', desc: 'Incite les ennemis à attaquer ce serviteur' },
+    HEAL: { text: 'Soin', img: PATH_IMAGE + 'buff_06_hot.png', desc: 'Soigne 0.8% de PV par niveau toutes les 3 secondes (5 niveaux max)' },
+    MISS: { text: 'Frappe Oblique↑', img: PATH_IMAGE + 'buff_07_miss.png', desc: 'Augmente le taux de frappe oblique de 5\% par niveau. (5 niveaux max)' },
+    CRI_DEF: { text: 'Résistance aux coups critiques', img: PATH_IMAGE + 'buff_08_cri_def.png', desc: 'Réduit les dégâts critiques reçus 10\% par niveau. (5 niveaux max)' },
+    NO_DEBUFF: { text: 'Immunité', img: PATH_IMAGE + 'buff_09_no_debuff.png', desc: 'Empêche de recevoir des debuffs' },
+    NO_DAMAGE: { text: 'Invincibilité', img: PATH_IMAGE + 'buff_10_no_damage.png', desc: 'Empêche de subir des dégâts' },
+    SHIELD: { text: 'Bouclier', img: PATH_IMAGE + 'buff_11_shield.png', desc: 'Absorbe les dégâts' },
+    PROTECT_ALLY: { text: 'Escorte', img: PATH_IMAGE + 'buff_12_protect_ally.png', desc: 'Se lance sur tous les autres alliés; subis 20\% de dégâts à leur place' },
+    VAMPIRE: { text: 'Vampire', img: PATH_IMAGE + 'buff_13_vampire.png', desc: 'Soigne de 20\% des dégâts infligés. (jusqu\'à 10000)' },
+    ENDURE: { text: 'Résilience', img: PATH_IMAGE + 'buff_14_endure.png', desc: 'Les PV ne tombent pas en dessous de 1' },
+    LESS_DAMAGE: { text: 'Réduction des dégâts subis', img: PATH_IMAGE + 'buff_15_less_damage.png', desc: 'Réduit les dégâts subis' },
+    REFLECT_DAMAGE: { text: 'Renvoi', img: PATH_IMAGE + 'buff_16_reflect_damage.png', desc: 'Renvoi 6\% des dégâts subis.' },
+    REVIVAL: { text: 'Rédemption', img: PATH_IMAGE + 'buff_17_revival.png', desc: 'Lorsque les PV tombent à 0, vous devenez invincible pendant 1 seconde et récupérez immédiatement une certaine quantité de PV.' },
+    RELATIONSHIP: { text: 'Relation', img: PATH_IMAGE + 'buff_18_relation.png', desc: 'Renforcé par un effet de relation' },
+    EFFECT_ACC_WAVE: { text: 'Augmente la précision (Vague)', img: PATH_IMAGE + 'buff_19_effect_acc.png', desc: 'L\'effet de vague augmente la précision. (Niveau 1 : 10\%)' },
+    SEAL_REMOVE_BUFF: { text: 'Blocage de dissipation', img: PATH_IMAGE + 'buff_20_seal_remove_buff.png', desc: 'Les buffs ne peuvent pas être dissipés' },
+    UNSTABLE_POTION_IMMUNE_CC_RANDOM: { text: 'Potion instable', img: PATH_IMAGE + 'buff_21_unstable_potion_immune_cc_random.png', desc: 'Applique au hasard l\'immunité au gel, à l\'étourdissement ou au silence pendant 15 secondes. Ignore l\'antibuff.' },
+    STABLE_POTION_IMMUNE_CC: { text: 'Potion stable', img: PATH_IMAGE + 'buff_22_stable_potion_immune_cc.png', desc: 'Applique au hasard l\'immunité au gel, à l\'étourdissement ou au silence pendant 15 secondes. Ignore l\'antibuff.' },
+    INFINITE_KNOWLEDGE: { text: 'Savoir infini', img: PATH_IMAGE + 'buff_23_infinite_knowledge.png', desc: 'Augmente les dégâts critiques. (Feu/Eau/Forêt 150 %, Lumière/Ténèbres 250 %)' },
+    IYAGAGAK_OBESSION: { text: 'Obsession d\'Iyagagak', img: PATH_IMAGE + 'buff24_iyagagak_obession_cri_dmg.png', desc: 'Augmente les dégâts critiques si sous l\'effet d\'un buff. (Feu/Eau/Forêt 150 %, Lumière 300 %, Ténèbres 250 %)' },
+};
+Object.freeze(ENUM_BUFF);
+
+const ENUM_DEBUFF = {
+    DEF: { text: 'Défense↓', img: PATH_IMAGE + 'debuff_01_def.png', desc: 'Réduit la défense de 14\% par niveau. (5 niveaux max)' },
+    ATK: { text: 'Attaque↓', img: PATH_IMAGE + 'debuff_02_atk.png', desc: 'Réduit l\'attaque de 10\% par niveau. (5 niveaux max)' },
+    CRITICAL: { text: 'Taux critique↓', img: PATH_IMAGE + 'debuff_03_critical.png', desc: 'Réduit le taux critique de 10\% par niveau. (5 niveaux max)' },
+    MORE_DAMAGE: { text: 'Marque', img: PATH_IMAGE + 'debuff_04_more_damage.png', desc: 'Augmente les dégâts subis de 5\% par niveau. (5 niveaux max)' },
+    MISS: { text: 'Taux de frappe oblique↓', img: PATH_IMAGE + 'debuff_05_miss.png', desc: 'Réduit le taux de frappe oblique de 7\% par niveau. (5 niveaux max)' },
+    SPD: { text: 'Vitesse↓', img: PATH_IMAGE + 'debuff_06_spd.png', desc: 'Réduit la vitesse de 6\% par niveau. (5 niveaux max)' },
+    DOT_FIRE: { text: 'Dégâts continus (feu)', img: PATH_IMAGE + 'debuff_07_dot_fire.png', desc: 'Inflige des dégâts égaux à 0,4\% des PV max par niveau toutes les 3 secondes. (5 niveaux max)' },
+    DOT_WATER: { text: 'Dégâts continus (eau)', img: PATH_IMAGE + 'debuff_08_dot_water.png', desc: 'Inflige des dégâts égaux à 0,4\% des PV max par niveau toutes les 3 secondes. (5 niveaux max)' },
+    DOT_FOREST: { text: 'Dégâts continus (forêt)', img: PATH_IMAGE + 'debuff_09_dot_forest.png', desc: 'Inflige des dégâts égaux à 0,4\% des PV max par niveau toutes les 3 secondes. (5 niveaux max)' },
+    DOT_LIGHT: { text: 'Dégâts continus (lumière)', img: PATH_IMAGE + 'debuff_10_dot_light.png', desc: 'Inflige des dégâts égaux à 0,4\% des PV max par niveau toutes les 3 secondes. (5 niveaux max)' },
+    DOT_DARK: { text: 'Dégâts continus (ténèbres)', img: PATH_IMAGE + 'debuff_11_dot_dark.png', desc: 'Inflige des dégâts égaux à 0,4\% des PV max par niveau toutes les 3 secondes. (5 niveaux max)' },
+    CC_STUN: { text: 'Etourdissement', img: PATH_IMAGE + 'debuff_12_cc_stun.png', desc: 'Empêche toute action' },
+    NO_HEAL: { text: 'Blocage de soin', img: PATH_IMAGE + 'debuff_13_no_heal.png', desc: 'Empêche de recevoir des soins' },
+    NO_BUFF: { text: 'Antibuff', img: PATH_IMAGE + 'debuff_14_no_buff.png', desc: 'Empêche de recevoir des buffs' },
+    CC_FEAR: { text: 'Peur', img: PATH_IMAGE + 'debuff_15_cc_fear.png', desc: 'Vous devenez terrifié et perdez le contrôle de vos actions.' },
+    CC_SILENCE: { text: 'Silence', img: PATH_IMAGE + 'debuff_16_cc_silence.png', desc: 'Empêche d\'utiliser des aptitudes actives/combo' },
+    CC_PETRIFY: { text: 'Pétrifié', img: PATH_IMAGE + 'debuff_17_cc_petrify.png', desc: 'Empêche toute action et le chargement de la jauge d\'aptitude' },
+    CC_FREEZE: { text: 'Gelé', img: PATH_IMAGE + 'debuff_18_cc_freeze.png', desc: 'Empêche toute action et le chargement de la jauge d\'aptitude' },
+    NO_ENDURE: { text: 'Blocage de résilience', img: PATH_IMAGE + 'debuff_19_no_endure.png', desc: 'Bloque la résilience' },
+    NO_REVIVAL: { text: 'Blocage de résurection', img: PATH_IMAGE + 'debuff_20_no_revival.png', desc: 'Bloque la résurection' },
+    WEAK_ATK: { text: 'Faiblesse à l\'Attaque', img: PATH_IMAGE + 'debuff_21_weak_atk.png', desc: 'Augmente les dégâts subis en fonction de l\'attaque' },
+    WEAK_DEF: { text: 'Faiblesse à la Défense', img: PATH_IMAGE + 'debuff_22_weak_def.png', desc: 'Augmente les dégâts subis en fonction de la défense' },
+    WEAK_SPD: { text: 'Faiblesse à la Vitesse', img: PATH_IMAGE + 'debuff_23_weak_spd.png', desc: 'Augmente les dégâts subis en fonction de la vitesse' },
+    WEAK_IGNORE_DEF: { text: 'Faiblesse à l\'anti-DEF', img: PATH_IMAGE + 'debuff_24_weak_ignore_def.png', desc: 'Augmente les dégâts subis qui ignorent la défense' },
+    WEAK_ENEMY_HP: { text: 'Faiblesse aux attaques basées sur les PV ennemis', img: PATH_IMAGE + 'debuff_25_weak_enemy_hp.png', desc: 'Augmente les dégâts subis en fonction de ses PV max' },
+    NO_PASSIVE: { hide: 'true', text: '', img: PATH_IMAGE + 'debuff_26_no_passive.png', desc: 'Aptitude passive désactivée' },
+    RELATIONSHIP: { hide: 'true', text: '', img: PATH_IMAGE + 'debuff_27_relation.png', desc: 'Affaibli par l\'effet de relation ennemi' },
+    OBLIVION: { text: 'Oubli', img: PATH_IMAGE + 'debuff_28_oblivion.png', desc: 'Aptitude passive désactivée' },
+    BOMB_2_5: { text: 'Bombe(2sec/5sec)', img: PATH_IMAGE + 'debuff_29_bomb.png', desc: 'Place une bombe qui explose après 2 ou 5 secondes. Les dégâts de la bombe sont affectés par la puissance d\'attaque et ne dépassent pas 50\% des PV max de la cible.' },
+    BOMB_5: { text: 'Bombe(5sec)', img: PATH_IMAGE + 'debuff_29_bomb.png', desc: 'Place une bombe qui explose après 5 secondes. Les dégâts de la bombe sont affectés par la puissance d\'attaque et ne dépassent pas 50\% des PV max de la cible.' },
+    CURSE_NO_SHIELD: { text: 'blocage de bouclier', img: PATH_IMAGE + 'debuff_30_curse_no_shield.png', desc: 'Empêche la cible de recevoir un bouclier pendant 30 secondes' },
+    CURSE_NO_DEBUFF_REMOVE: { text: 'Anti-cleanse', img: PATH_IMAGE + 'debuff_31_curse_no_remove_debuff.png', desc: 'Empêche de dissiper des debuffs sur la cible pendant 5 secondes' },
+    SPECIAL_POTION_LOW_DEF: { text: 'Potion spéciale', img: PATH_IMAGE + 'debuff_32_special_potion_low_def.png', desc: 'Debuff de défense (Niveau 5), ne peut se dissipé (Feu 20 sec, Ténèbres 30 sec)' },
+    ELECTRIC_SHOCK_MORE_DAMAGE: { text: 'Choc électrique', img: PATH_IMAGE + 'debuff_33_electric_shock_more_damage.png', desc: 'Augmente les dégâts subis, ne peut se dissiper' },
+    ANKLE_CUT: { text: 'Taillade de la cheville', img: PATH_IMAGE + 'debuff_34_ankle_cut.png', desc: 'Réduit la vitesse de 30\%, ne peut se dissiper (10 secondes).' },
+    BLOWING_BELLOWS: { text: 'Soufflets du maître', img: PATH_IMAGE + 'debuff_35_blowing_bellows.png', desc: 'Augmente les dégâts subis par la cible de 30\%, ne peut se dissiper (Forêt 10 sec, Lumière 20 sec).' },
+    BRIGHT_LIGHT: { text: 'Lumière de l\espérance', img: PATH_IMAGE + 'debuff_02_atk.png', desc: 'Réduit l\'attaque (15 % Feu, 25 % Lumière), ne peut se dissiper (10 secondes).' },
+    BLEEDING: { text: 'Saignement', img: PATH_IMAGE + 'debuff_36_bleeding.png', desc: 'Inflige des dégâts en fonction de l\'attaque après 5 secondes, ne dépassant pas 50\% des PV max de l\'ennemi. Ne peut se dissiper' },
+    POISON: { text: 'Poison', img: PATH_IMAGE + 'debuff_37_poison.png', desc: 'Inflige 9\% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
+};
+Object.freeze(ENUM_DEBUFF);
+
+const CONST_EFFECT = {
+    ATK_10: 'Augmente l\'attaque de  10\%',
+    ATK_15: 'Augmente l\'attaque de  15\%',
+    ATK_30: 'Augmente l\'attaque de  30\%',
+    ATK_35: 'Augmente l\'attaque de  35\%',
+    ATK_45: 'Augmente l\'attaque de  45\%',
+    ATK_50: 'Augmente l\'attaque de  50\%',
+    ATK_52: 'Augmente l\'attaque de  52\%',
+    ATK_57: 'Augmente l\'attaque de  57\%',
+    ATK_70: 'Augmente l\'attaque de  70\%',
+    ATK_100: 'Augmente l\'attaque de  100\%',
+    ATK_130: 'Augmente l\'attaque de  130\%',
+    ATK_200: 'Augmente l\'attaque de  200\%',
+    ATK_250: 'Augmente l\'attaque de  250\%',
+    ATK_300: 'Augmente l\'attaque de  300\%',
+    DEF_30: 'Augmente la défense de 30\%',
+    DEF_35: 'Augmente la défense de 35\%',
+    DEF_45: 'Augmente la défense de 45\%',
+    DEF_50: 'Augmente la défense de 50\%',
+    DEF_52: 'Augmente la défense de 52\%',
+    DEF_57: 'Augmente la défense de 57\%',
+    DEF_70: 'Augmente la défense de 70\%',
+    DEF_100: 'Augmente la défense de 100\%',
+    DEF_200: 'Augmente la défense de 200\%',
+    DEF_400: 'Augmente la défense de 400\%',
+    HP_35: 'Augmente les PV de 35\%',
+    HP_40: 'Augmente les PV de 40\%',
+    HP_45: 'Augmente les PV de 45\%',
+    HP_52: 'Augmente les PV de 52\%',
+    HP_57: 'Augmente les PV de 57\%',
+    HP_70: 'Augmente les PV de 70\%',
+    HP_100: 'Augmente les PV de 100\%',
+    CRI_30: 'Augmente le taux critique de 30\%',
+    CRI_35: 'Augmente le taux critique de 35\%',
+    CRI_50: 'Augmente le taux critique de 50\%',
+    CRI_60: 'Augmente le taux critique de 60\%',
+    CRI_DMG_50: 'Augmente les dégâts critiques de 50\%',
+    CRI_DMG_70: 'Augmente les dégâts critiques de 70\%',
+    CRI_DMG_80: 'Augmente les dégâts critiques de 80\%',
+    CRI_DMG_100: 'Augmente les dégâts critiques de 100\%',
+    CRI_DMG_150: 'Augmente les dégâts critiques de 150\%',
+    CRI_DMG_250: 'Augmente les dégâts critiques de 250\%',
+    SPD_25: 'Augmente la vitesse de 25\%',
+    SPD_30: 'Augmente la vitesse de 30\%',
+    SPD_32: 'Augmente la vitesse de 32\%',
+    SPD_35: 'Augmente la vitesse de 35\%',
+    SPD_50: 'Augmente la vitesse de 50\%',
+    EFFECT_ACC_20: 'Augmente la précision de 20\%',
+    EFFECT_ACC_30: 'Augmente la précision de 30\%',
+    EFFECT_ACC_40: 'Augmente la précision de 40\%',
+    EFFECT_ACC_50: 'Augmente la précision de 50\%',
+    EFFECT_ACC_52: 'Augmente la précision de 52\%',
+    EFFECT_ACC_100: 'Augmente la précision de 100\%',
+    EFFECT_ACC_150: 'Augmente la précision de 150\%',
+    EFFECT_RES_30: 'Augmente la résistance de 30\%',
+    EFFECT_RES_40: 'Augmente la résistance de 40\%',
+    EFFECT_RES_50: 'Augmente la résistance de 50\%',
+    EFFECT_RES_52: 'Augmente la résistance de 52\%',
+    EFFECT_RES_55: 'Augmente la résistance de 55\%',
+    EFFECT_RES_150: 'Augmente la résistance de 150\%',
+    EFFECT_RES_200: 'Augmente la résistance de 200\%',
+
+    HEAL_BY_DEBUFF_10: 'Soigne 10\% de PV par debuff',
+    HEAL_5: 'Soigne les alliés de 5\% des PV',
+    HEAL_7: 'Soigne les alliés de 7\% des PV',
+    HEAL_10: 'Soigne les alliés de 10\% des PV',
+    HEAL_15: 'Soigne les alliés de 15\% des PV',
+    HEAL_20: 'Soigne les alliés de 20\% des PV',
+    HEAL_50: 'Soigne les alliés de 50\% des PV',
+    HEAL_70: 'Soigne les alliés de 70\% des PV',
+    HEAL_100: 'Soigne les alliés de 100\% des PV',
+    HEAL_ATK_800: 'Soigne les alliés de 800\%  de l\'attaque',
+    HEAL_ATK_1200: 'Soigne les alliés de 1200\%  de l\'attaque',
+    REVIVAL_ALL: 'Ressucite tous les alliés',
+    REVIVAL_1: 'Ressucite un allié',
+    REVIVAL_SELF: 'Revient à la vie 1 fois par combat',
+
+    ATTACK_WITH_LOW_DEF_40: 'Réduit la défense ennemie de 40\%',
+    DMG_30: 'Augmente les dégâts de 30\%',
+    DMG_40: 'Augmente les dégâts de 40\%',
+    DMG_50: 'Augmente les dégâts de 50\%',
+    DMG_70: 'Augmente les dégâts de 70\%',
+    DMG_100: 'Augmente les dégâts de 100\%',
+    DMG_120: 'Augmente les dégâts de 120\%',
+    DMG_150: 'Augmente les dégâts de 150\%',
+    DMG_180: 'Augmente les dégâts de 180\%',
+    DECREASE_ATK_90: 'Réduit l\'attaque de 90\%',
+    DECREASE_DMG_30: 'Réduit les dégâts subis de 30\%',
+    DECREASE_DMG_50: 'Réduit les dégâts subis de 50\%',
+    DECREASE_DMG_60: 'Réduit les dégâts subis de 60\%',
+    DECREASE_DMG_70: 'Réduit les dégâts subis de 70\%',
+    DECREASE_BRAND_DMG_80: 'Réduit les dégâts subis d\'aptitudes de combo de 80\%',
+    DECREASE_IGNORE_DEF_DMG_50: 'Réduit les dégâts subis d\'attaques anti-def de 50\%',
+    DECREASE_IGNORE_DEF_DMG_70: 'Réduit les dégâts subis d\'attaques anti-def de 70\%',
+    MAX_DMG_OF_HP_30: 'Dégâts maximum de 30\% des PV',
+    MAX_DMG_REDUCED_ON_BRAND_MULTI: 'Réduit les dégâts d\'aptitudes de combo de 90\% à partir du second coup',
+
+    SKILL_CHARGE_5: 'Augmente la jauge d\'aptitude de 5\%',
+    SKILL_CHARGE_10: 'Augmente la jauge d\'aptitude de 10\%',
+    SKILL_CHARGE_15: 'Augmente la jauge d\'aptitude de 15\%',
+    SKILL_CHARGE_20: 'Augmente la jauge d\'aptitude de 20\%',
+    SKILL_CHARGE_30: 'Augmente la jauge d\'aptitude de 30\%',
+    SKILL_CHARGE_100: 'Augmente la jauge d\'aptitude de 100\%',
+    SKILL_DISCHARGE_10: 'Réduit la jauge d\'aptitude de 10\%',
+    SKILL_DISCHARGE_20: 'Réduit la jauge d\'aptitude de 20\%',
+    SKILL_DISCHARGE_30: 'Réduit la jauge d\'aptitude de 30\%',
+    SKILL_DISCHARGE_50_HIGHEST: 'Réduit la jauge d\'aptitude la plus chargée de 50\%',
+    SKILL_BRAND_CHARGE_10: 'Commence le combat avec la jauge de combo chargée à 10\%',
+    SKILL_BRAND_CHARGE_20: 'Commence le combat avec la jauge de combo chargée à 20\%',
+    SKILL_BRAND_CHARGE_100: 'Commence le combat avec la jauge de combo chargée à 100\%',
+
+    NO_PASSIVE: 'Passif désactivé',
+    NO_SPEED: 'Réduit la vitesse de 80\%',
+    REMOVE_DEBUFF_ALL: 'Dissipe tous les debuffs',
+    REMOVE_DEBUFF_1: 'Dissipe 1 debuff',
+    REMOVE_DEBUFF_2: 'Dissipe 2 debuffs',
+    REMOVE_BUFF_ALL: 'Dissipe tous les buffs',
+    REMOVE_BUFF_1: 'Dissipe 1 buff',
+    REMOVE_BUFF_2: 'Dissipe 2 buff',
+    REMOVE_BUFF_3: 'Dissipe 3 buff',
+    REMOVE_BUFF_SHIELD: 'Dissipe les boucliers',
+
+};
+Object.freeze(CONST_EFFECT);
+
+const CONST_CONDITION = {
+    REGION_ALL: '[Toutes les régions]',
+    REGION_STAGE: '[Manoir]',
+    REGION_PVP: '[JcJ]',
+    REGION_TOWER: '[Abaddon]',
+    REGION_DUNGEON: '[Donjon]',
+    REGION_RAID: '[Raid]',
+    REGION_GUILD: '[Guilde]',
+    REGION_INVASION: '[Invasion]',
+
+    FLAG_SKILL_ATTACKED_CRITICAL: '[coup critique subi]',
+    FLAG_SKILL_ATTACKED: '[Aptitude subie]',
+    FLAG_NORMAL_ATTACKED: '[Attaque normale subie]',
+    FLAG_SKILL_USE: '[Aptitude]',
+    FLAG_SKILL_CRITICAL: '[Aptitude critique]',
+    FLAG_BRAND_USE: '[Combo]',
+    FLAG_BRAND_CRITICAL: '[Combo critique]',
+    FLAG_BRAND_BY_SEQUEL: '[Marque secondaire]',
+    FLAG_EVERY_CRITICAL: '[Coup critique]',
+    FLAG_EVERY_ATTACK: '[Toutes les attaques]',
+    FLAG_ATTACK_NORMAL: '[Attaque normale]',
+    FLAG_ATTACK_CRITICAL: '[Attaque normale critique]',
+
+    FLAG_TANK_ATTACKED: '[Tank frappé]',
+    FLAG_TANK_ATTACKED_BY_SKILL: '[Tank frappé par aptitude]',
+    FLAG_TANK_SAME_ELEMENT: '[Tank même élément]',
+    FLAG_NO_HIT_3SEC: '[3 secondes sans dégâts]',
+    FLAG_NO_HIT_10SEC: '[10 secondes sans dégâts]',
+
+    FLAG_PROVOKE: '[Pendant provocation]',
+    FLAG_VAMPIRE: '[Pendant vampire]',
+    FLAG_SHIELD: '[Pendant bouclier]',
+    FLAG_REFLECT: '[Pendant renvoi]',
+    FLAG_REVIVAL_BUFF: '[Pendant rédemption]',
+    FLAG_MISS_BUFF: '[Pendant augmentation de frappes obliques]',
+    FLAG_HEAL: '[Pendant soins]',
+    FLAG_HEAL_OVER_HP: '[Soin excedent]',
+    FLAG_HEAL_USE: '[En cas de soin]',
+    FLAG_STUN_SELF: '[Si étourdi]',
+    FLAG_DEBUFF_DEF_SELF: '[Sous l\'effet d\'un debuff de défense]',
+    FLAG_REMOVE_DEBUFF_SELF: '[Si des debuffs sont dissipés]',
+    FLAG_REMOVE_BUFF: '[Si des buffs sont dissipés chez l\'ennemi]',
+    FLAG_BUFF_SELF: '[Sous l\'effet d\'un buff]',
+
+    FLAG_HP_DEATH: '[Si les PV tombent à 0]',
+    FLAG_HP_LESS_70: '[En dessous de 70\% de PV]',
+    FLAG_HP_LESS_90: '[En dessous de 90\% de PV]',
+    FLAG_HP_OVER_70: '[Au dessus de 70\% de PV]',
+    FLAG_HP_OVER_80: '[Au dessus de 80\% de PV]',
+    FLAG_HP_OVER_90: '[Au dessus de 90\% de PV]',
+    FLAG_HP_OVER_95: '[Au dessus de 95\% de PV]',
+    FLAG_ATTACK_ENEMY_STUN: '[Contre un ennemi étourdi]',
+
+	TARGET_SELF: 'Soi-même',
+    TARGET_ALLY: 'Allié(s)',
+	TARGET_ALLY_TANK: 'Tank Allié',
+	TARGET_ALLY_ATTACK: 'Attaquant Allié',
+	TARGET_ALLY_SUPPORT: 'Soutien Allié',
+	TARGET_ALLY_HEAL: 'Soigneur Allié',
+    TARGET_ALLY_ALL: 'Tous les Alliés',
+    TARGET_ALLY_FIRE: 'Alliés feu',
+    TARGET_ALLY_WATER: 'Alliés eau',
+    TARGET_ALLY_FOREST: 'Alliés forêt',
+    TARGET_ALLY_LIGHT: 'Alliés lumière',
+    TARGET_ALLY_DARK: 'Alliés ténèbres',
+    TARGET_ALLY_REVIVED: 'Allié rescucité',
+    TARGET_ALLY_HP_LOW: 'Allié (PV bas)',
+
+    TARGET_ENEMY: 'Ennemi',
+    TARGET_ENEMY_ALL: 'Tous les Ennemis',
+    TARGET_ENEMY_SINGLE: 'Un seul ennemi',
+    TARGET_ENEMY_BUFF_NO_DEBUFF: 'Ennemi sous immunité',
+    TARGET_ENEMY_NOT_DEBUFF_DEF: 'Ennemi sous défense↓',
+    TARGET_ENEMY_DEBUFF_SPD: 'Ennemis sous vitesse↓',
+    TARGET_ENEMY_DEBUFF_DEF: 'Ennemi sous défense↓',
+    TARGET_ENEMY_DEBUFF_MORE_DMG: 'Ennemi sous marque',
+    TARGET_ENEMY_DEBUFF_NO_REVIVAL: 'Ennemi sous Blocage de résurection',
+    TARGET_ENEMY_DEBUFF_NO_BUFF: 'Ennemi sans buff',
+    TARGET_ENEMY_DEBUFF_POISON: 'Ennemi empoisonné',
+    TARGET_ENEMY_CC_FREEZE: 'Ennemi gelé',
+    TARGET_ENEMY_CC_SILENCE: 'Ennemi sous silence',
+
+    TARGET_RAID_BOSS: 'Boss de raid',
+    TARGET_RAID_LUCIEN: 'Lucian, monarque de feu',
+    TARGET_RAID_RAGNA: 'Ragna, monarque d\'eau',
+    TARGET_RAID_BASTILLE: 'Bastille, monarque de forêt',
+    TARGET_DUNGEON_BOSS: 'Boss du donjon',
+    TARGET_DUNGEON_OMEN: 'Présage',
+
+};
+Object.freeze(CONST_CONDITION);
+
+// ----
