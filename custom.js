@@ -73,7 +73,7 @@ function makeTagImage(img_src, img_name, desc, width, height) {
 }
 
 function makeTagImageEmptySkill() {
-    var $img = makeTagImage(PATH_IMAGE + IMAGE_EMPTY_EFFECT, '스킬 효과', '스킬 효과', ICON_WIDTH - 4);   
+    var $img = makeTagImage(PATH_IMAGE + IMAGE_EMPTY_EFFECT, 'effet', 'effet', ICON_WIDTH - 4);   
     $img.attr('style', $img.attr('style') + '; margin: 2px;');
     $img.removeAttr('data-toggle', '');
     $img.removeAttr('title', '');
@@ -81,7 +81,7 @@ function makeTagImageEmptySkill() {
     return $img;
 }
 function makeTagImageEmptyCharacter() {
-    var $img = makeTagImage(PATH_IMAGE + IMAGE_EMPTY_CHARACTER, '대상 이미지', '', REL_ICON_WIDTH - 4, REL_ICON_HEIGHT - 4);   
+    var $img = makeTagImage(PATH_IMAGE + IMAGE_EMPTY_CHARACTER, 'image cible', '', REL_ICON_WIDTH - 4, REL_ICON_HEIGHT - 4);   
     $img.attr('style', $img.attr('style') + '; margin: 2px;');
     $img.removeAttr('data-toggle', '');
     $img.removeAttr('title', '');
