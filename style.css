@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'Heir of Light';
+    src: url('res/HeirofLightRegular.woff2') format('woff2'),
+        url('res/HeirofLightRegular.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Heir of Light bold';
+    src: url('res/HeirofLightBold.woff2') format('woff2'),
+        url('res/HeirofLightBold.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+	font-family: 'Heir of Light';
+	color: white;
+	margin: 0;
+}
+
+a {
+  color: white;
+}
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  color: white;
+  background-color: #333333;
+  font-family: 'Heir of Light bold' !important;
+  border-radius: 0px !important;
+  z-index: 2;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: purple;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.bgshadow {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  /*z-index: 1;  Specify a stack order in case you're using a different order for other elements */
+}
+
+h1 {
+	margin-left: 20px;
+	text-decoration: underline overline white;
+	text-shadow: 1px 1px 2px green, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+h2 {
+	text-decoration: underline overline white;
+}
+
+.flex-container {
+  /* We first create a flex layout context */
+  display: flex;
+  
+  /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+  flex-flow: row wrap;
+  gap: 10px;
+  
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.flex-item {
+	background: rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	width: 350px;
+	color: white;
+}
+
+.flexitem:hover {
+	background-color: #ddd;
+}

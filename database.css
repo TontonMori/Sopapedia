@@ -1,0 +1,226 @@
+@font-face {
+    font-family: 'Heir of Light';
+    src: url('res/HeirofLightRegular.woff2') format('woff2'),
+        url('res/HeirofLightRegular.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Heir of Light bold';
+    src: url('res/HeirofLightBold.woff2') format('woff2'),
+        url('res/HeirofLightBold.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+a {
+  color: white;
+}
+
+ /* Navbar container */
+.navbar {
+  overflow: hidden;
+  color: white !important;
+  background-color: #333333;
+  font-family: 'Heir of Light bold' !important;
+  border-radius: 0px !important;
+  z-index: 1;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: purple;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+	font-family: 'Heir of Light';
+}
+
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 60px 15px 0;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+/* CSS added byAskai
+-------------------------------------------------- */
+.media-body > p {
+    margin-bottom: 2px;
+}
+
+.cell-header {
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+td > .row {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+hr.separator {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+img.role-icon {
+    margin-right: 4px;
+    background-color: #444;
+}
+
+.media.skill-list {
+    margin-top: 2px;
+}
+
+small.condition {
+    color: darksalmon;
+}
+small.condition-ally {
+    color: dodgerblue;
+}
+small.additional {
+    color: royalblue;
+}
+
+.modal-body > h5 {
+    background-color: paleturquoise;
+    padding: 2px 12px;
+}
+div#modalVersionHistory .modal-body {
+    overflow-y: scroll;
+    height: 70vh;
+}
+
+.filter-label {
+    margin: 4px 8px;
+}
+.filter-hide, 
+.filter-hide-el, .filter-hide-ro, 
+.filter-hide-br, .filter-hide-brse, 
+.filter-hide-jb, 
+.filter-hide-efde, .filter-hide-efbu, 
+.filter-hide-te, .filter-hide-efut, 
+.filter-hide-re, 
+.filter-hide-sn
+{
+    display: none;
+}
+.panel-body > h5 {
+    background-color: lavender;
+    padding: 2px 12px;
+    font-weight: bold;
+}
+span#resultFilter {
+    color: indigo;
+    font-weight: normal;
+}
+
+.panel-body .float-top-right {
+    float: right;
+    margin-top: -8px;
+    margin-right: 12px;
+}
+.panel-body h5 > .float-top-right {
+    float: right;
+    margin-top: -2px;
+    margin-right: 0px;
+}
+.title-inline {
+    display: inline;
+    margin-right: 24px;
+}
