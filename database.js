@@ -25,7 +25,7 @@ function findServantByName() {
         return sname && sname.indexOf(filter_name) == -1;
     }).addClass(filter_tag);
 
-    _showResultCount();     
+    _showResultCount();
 }
 
 function resetSearchName() {

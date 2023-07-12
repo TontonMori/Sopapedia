@@ -109,6 +109,10 @@ h1 {
     justify-content: center;
 }
 
+.title {
+	font-size: 5em;
+}
+
 h2 {
 	display: flex;
 	text-decoration: underline overline white;
