@@ -100,6 +100,18 @@ a {
   display: block;
 }
 
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+
 h1 {
 	display: flex;
 	margin-left: 20px;
@@ -118,6 +130,31 @@ h2 {
 	text-decoration: underline overline white;
 	align-items: center;
     justify-content: center;
+}
+
+img.Feu {
+	border: 3px solid #B22222;
+	background-color:#FFDFDF;
+}
+
+img.Eau {
+	border: 3px solid #4199FF;
+	background-color:#E1E1FF;
+}
+
+img.For {
+	border: 3px solid #228B22;
+	background-color:#EAFEE2;
+}
+
+img.Lum {
+	border: 3px solid #CEAB00;
+	background-color:#EFEFCA;
+}
+
+img.Ten {
+	border: 3px solid #4B0082;
+	background-color:#EFCDF8;
 }
 
 .flex-container {

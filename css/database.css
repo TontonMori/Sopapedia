@@ -93,17 +93,6 @@ a {
   display: block;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
-	font-family: 'Heir of Light';
-}
-
-
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .sticky {
   position: fixed;
@@ -114,6 +103,14 @@ body {
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
   padding-top: 60px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+	font-family: 'Heir of Light';
 }
 
 /* Custom page CSS
