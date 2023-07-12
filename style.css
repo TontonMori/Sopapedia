@@ -118,7 +118,7 @@ h2 {
 
 .flex-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   gap: 10px;
   padding: 0;
   margin: 10px;
@@ -130,6 +130,6 @@ h2 {
 .flex-item {
 	background: rgba(0, 0, 0, 0.5);
 	padding: 10px;
-	width: 320px;
+	width: 750px;
 	color: white;
 }
