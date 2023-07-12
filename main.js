@@ -17,7 +17,7 @@ function stickyNavbar() {
 }
 
 // Generate background image at random
-function chatimgset() {
+function imgset() {
     //declare an array
     var randomImage = new Array();
 
@@ -27,6 +27,15 @@ function chatimgset() {
     randomImage[2] = "res/img/en-pop-gallery3.jpg";
     randomImage[3] = "res/img/en-pop-gallery4.jpg";
     randomImage[4] = "res/img/en-pop-gallery5.jpg";
+	randomImage[5] = "res/img/en-pop-gallery6.jpg";
+	randomImage[6] = "res/img/en-pop-gallery7.jpg";
+	randomImage[7] = "res/img/en-pop-gallery8.jpg";
+	randomImage[8] = "res/img/en-pop-gallery9.jpg";
+	randomImage[9] = "res/img/en-pop-gallery10.jpg";
+	randomImage[10] = "res/img/en-pop-gallery11.jpg";
+	randomImage[11] = "res/img/en-pop-gallery12.jpg";
+	randomImage[12] = "res/img/en-pop-gallery13.jpg";
+	randomImage[13] = "res/img/en-pop-gallery14.jpg";
 
     //generate a number 
     var number = Math.floor(Math.random() * randomImage.length);
