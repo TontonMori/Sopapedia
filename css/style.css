@@ -132,30 +132,17 @@ h2 {
     justify-content: center;
 }
 
-img.Feu {
-	border: 3px solid #B22222;
-	background-color:#FFDFDF;
+div {
 }
-
-img.Eau {
-	border: 3px solid #4199FF;
-	background-color:#E1E1FF;
+.divTable .divTableCell, .divTable .divTableHead {
 }
-
-img.For {
-	border: 3px solid #228B22;
-	background-color:#EAFEE2;
-}
-
-img.Lum {
-	border: 3px solid #CEAB00;
-	background-color:#EFEFCA;
-}
-
-img.Ten {
-	border: 3px solid #4B0082;
-	background-color:#EFCDF8;
-}
+.divTable{ display: table; }
+.divTableRow { display: table-row; }
+.divTableHeading { display: table-header-group;}
+.divTableCell, .divTableHead { display: table-cell;}
+.divTableHeading { display: table-header-group;}
+.divTableFoot { display: table-footer-group;}
+.divTableBody { display: table-row-group;}
 
 .flex-container {
   display: flex;
@@ -175,14 +162,43 @@ img.Ten {
 	color: white;
 }
 
-div {
+img.Feu {
+	border: 3px solid #B22222;
+	background-color: #FFDFDF;
 }
-.divTable .divTableCell, .divTable .divTableHead {
+
+img.Eau {
+	border: 3px solid #4199FF;
+	background-color: #E1E1FF;
 }
-.divTable{ display: table; }
-.divTableRow { display: table-row; }
-.divTableHeading { display: table-header-group;}
-.divTableCell, .divTableHead { display: table-cell;}
-.divTableHeading { display: table-header-group;}
-.divTableFoot { display: table-footer-group;}
-.divTableBody { display: table-row-group;}
+
+img.For {
+	border: 3px solid #228B22;
+	background-color: #EAFEE2;
+}
+
+img.Lum {
+	border: 3px solid #CEAB00;
+	background-color: #EFEFCA;
+}
+
+img.Ten {
+	border: 3px solid #4B0082;
+	background-color: #EFCDF8;
+}
+
+.Buff {
+	text-shadow: 1px 1px 2px blue;
+}
+
+.Debuff {
+	text-shadow: 1px 1px 2px red;
+}
+
+.Util {
+	text-shadow: 1px 1px 2px yellow;
+}
+
+.Team {
+	text-shadow: 1px 1px 2px green;
+}
