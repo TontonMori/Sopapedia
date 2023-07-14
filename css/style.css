@@ -30,11 +30,11 @@ a {
 
 /* Navbar container */
 .navbar {
-  overflow: hidden;
-  color: white;
   background-color: #333333;
   font-family: 'Heir of Light bold' !important;
-  border-radius: 0px !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
   z-index: 2;
 }
 
@@ -100,21 +100,12 @@ a {
   display: block;
 }
 
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
-.sticky + .content {
-  padding-top: 60px;
+.page-header {
+  padding: 30px;
 }
 
 h1 {
 	display: flex;
-	margin-left: 20px;
 	text-decoration: underline overline white;
 	text-shadow: 1px 1px 2px green, 0 0 1em blue, 0 0 0.2em blue;
 	align-items: center;
