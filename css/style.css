@@ -18,6 +18,7 @@
 
 body {
 	font-family: 'Heir of Light';
+	font-size: larger;
 	color: white;
 	margin: 0;
 	align-items: center;
@@ -107,7 +108,7 @@ a {
 h1 {
 	display: flex;
 	text-decoration: underline overline white;
-	text-shadow: 1px 1px 2px green, 0 0 1em blue, 0 0 0.2em blue;
+	text-shadow: 4px 4px 8px black, 0 0 1em black, 0 0 0.2em black;
 	align-items: center;
     justify-content: center;
 }
@@ -121,6 +122,10 @@ h2 {
 	text-decoration: underline overline white;
 	align-items: center;
     justify-content: center;
+}
+
+h2 img {
+	margin-right: 10px;
 }
 
 div {
@@ -137,7 +142,19 @@ div {
 
 .flex-container {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column;
+  gap: 10px;
+  padding: 0;
+  margin: 10px;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.char-gallery {
+  display: flex;
+  flex: 33%;
+  flex-wrap: wrap;
   gap: 10px;
   padding: 0;
   margin: 10px;
@@ -149,7 +166,15 @@ div {
 .flex-item {
 	background: rgba(0, 0, 0, 0.5);
 	padding: 10px;
-	width: 750px;
+	width: 80%;
+	color: white;
+}
+
+.flex-character {
+	background: rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	width: 30%;
+	height: 250px;
 	color: white;
 }
 
