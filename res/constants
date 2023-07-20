@@ -246,6 +246,7 @@ const CONST_EFFECT = {
     DMG_120: 'Augmente les dégâts de 120\%',
     DMG_150: 'Augmente les dégâts de 150\%',
     DMG_180: 'Augmente les dégâts de 180\%',
+	DMG_200: 'Augmente les dégâts de 200\%',
     DECREASE_ATK_90: 'Réduit l\'attaque de 90\%',
     DECREASE_DMG_30: 'Réduit les dégâts subis de 30\%',
     DECREASE_DMG_50: 'Réduit les dégâts subis de 50\%',
