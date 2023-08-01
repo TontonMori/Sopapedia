@@ -114,6 +114,7 @@ const ENUM_BUFF = {
     INFINITE_KNOWLEDGE: { text: 'Savoir infini', img: PATH_IMAGE + 'buff_23_infinite_knowledge.png', desc: 'Augmente les dégâts critiques. (Feu/Eau/Forêt 150 %, Lumière/Ténèbres 250 %)' },
     IYAGAGAK_OBESSION: { text: 'Obsession d\'Iyagagak', img: PATH_IMAGE + 'buff24_iyagagak_obession_cri_dmg.png', desc: 'Augmente les dégâts critiques si sous l\'effet d\'un buff. (Feu/Eau/Forêt 150 %, Lumière 300 %, Ténèbres 250 %)' },
     SHEEP_BLESSING: { text: 'Bénédiction Ovine', img: PATH_IMAGE + 'buff_25_sheep_blessing.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 70\%' },
+    DECREASE_IGNORE_DEF_DMG: { text: 'Résistance à l\'anti-def', img: PATH_IMAGE + 'buff_25_sheep_blessing.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 50\%' },
 
 };
 Object.freeze(ENUM_BUFF);
@@ -339,9 +340,10 @@ const CONST_CONDITION = {
     FLAG_STUN_SELF: '[Si étourdi]',
     FLAG_DEBUFF_DEF_SELF: '[Sous l\'effet d\'un debuff de défense]',
     FLAG_REMOVE_DEBUFF_SELF: '[Si des debuffs sont dissipés]',
-	FLAG_REMOVE_DEBUFF_NONE: '[S\'il n\'y a aucun débuff à dissiper]',
+	FLAG_REMOVE_DEBUFF_NONE: '[Aucun débuff dissipé]',
     FLAG_REMOVE_BUFF: '[Si des buffs sont dissipés chez l\'ennemi]',
     FLAG_BUFF_SELF: '[Sous l\'effet d\'un buff]',
+	FLAG_DEF_OVERFLOW: '[Def > Def ennemi]',
 
     FLAG_HP_DEATH: '[Si les PV tombent à 0]',
     FLAG_HP_LESS_70: '[En dessous de 70\% de PV]',
