@@ -178,6 +178,11 @@ div {
 	color: white;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 img.Feu {
 	border: 3px solid #B22222;
 	background-color: #FFDFDF;
