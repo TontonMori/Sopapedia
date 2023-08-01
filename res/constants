@@ -28,7 +28,6 @@ const FILTER_LIST_UTILS = {
     REMOVE_BUFF: { text: 'Dissipe des buff (ennemis)', prefix: '', interfix: 'Dissipe', suffix: '', target: 'Ennemi' },
     REMOVE_DEBUFF: { text: 'Dissipe des debuffs (alliés)', prefix: '', interfix: 'Dissipe', suffix: '', target: 'Allié' },
     DECREASE_DMG: { text: 'Réduit les dégâts subis (alliés)', prefix: '', interfix: 'Réduit les dégâts subis', suffix: '', target: 'Allié' },
-	ATTACK_AOE: { text : 'Attaque de zone', prefix: '', interfix: 'Attaque de zone', suffix: '', target: '' },
 };
 Object.freeze(FILTER_LIST_UTILS);
 
@@ -114,6 +113,8 @@ const ENUM_BUFF = {
     STABLE_POTION_IMMUNE_CC: { text: 'Potion stable', img: PATH_IMAGE + 'buff_22_stable_potion_immune_cc.png', desc: 'Applique au hasard l\'immunité au gel, à l\'étourdissement ou au silence pendant 15 secondes. Ignore l\'antibuff.' },
     INFINITE_KNOWLEDGE: { text: 'Savoir infini', img: PATH_IMAGE + 'buff_23_infinite_knowledge.png', desc: 'Augmente les dégâts critiques. (Feu/Eau/Forêt 150 %, Lumière/Ténèbres 250 %)' },
     IYAGAGAK_OBESSION: { text: 'Obsession d\'Iyagagak', img: PATH_IMAGE + 'buff24_iyagagak_obession_cri_dmg.png', desc: 'Augmente les dégâts critiques si sous l\'effet d\'un buff. (Feu/Eau/Forêt 150 %, Lumière 300 %, Ténèbres 250 %)' },
+    SHEEP_BLESSING: { text: 'Bénédiction Ovine', img: PATH_IMAGE + 'buff_25_sheep_blessing.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 70\%' },
+
 };
 Object.freeze(ENUM_BUFF);
 
@@ -201,7 +202,9 @@ const CONST_EFFECT = {
     CRI_DMG_80: 'Augmente les dégâts critiques de 80\%',
     CRI_DMG_100: 'Augmente les dégâts critiques de 100\%',
     CRI_DMG_150: 'Augmente les dégâts critiques de 150\%',
+	CRI_DMG_200: 'Augmente les dégâts critiques de 200\%',
     CRI_DMG_250: 'Augmente les dégâts critiques de 250\%',
+	CRI_DMG_300: 'Augmente les dégâts critiques de 300\%',
     SPD_25: 'Augmente la vitesse de 25\%',
     SPD_30: 'Augmente la vitesse de 30\%',
     SPD_32: 'Augmente la vitesse de 32\%',
@@ -219,6 +222,7 @@ const CONST_EFFECT = {
     EFFECT_RES_50: 'Augmente la résistance de 50\%',
     EFFECT_RES_52: 'Augmente la résistance de 52\%',
     EFFECT_RES_55: 'Augmente la résistance de 55\%',
+	EFFECT_RES_100: 'Augmente la résistance de 100\%',
     EFFECT_RES_150: 'Augmente la résistance de 150\%',
     EFFECT_RES_200: 'Augmente la résistance de 200\%',
 
@@ -281,7 +285,15 @@ const CONST_EFFECT = {
     REMOVE_BUFF_1: 'Dissipe 1 buff',
     REMOVE_BUFF_2: 'Dissipe 2 buff',
     REMOVE_BUFF_3: 'Dissipe 3 buff',
-    REMOVE_BUFF_SHIELD: 'Dissipe les boucliers',
+    REMOVE_BUFF_SHIELD: 'Dissipe un bouclier',
+	REMOVE_BUFF_SHIELDS: 'Dissipe tous les boucliers',
+	SPEED_EQUALIZER: 'Vitesse ennemi = vitesse du lanceur',
+	
+	SILENCE_IMMUNE: 'Immunité au silence',
+	PETRIFY_IMMUNE: 'Immunité à pétrification',
+	STUN_IMMUNE: 'Immunité à l\'étourdissement',
+	FREEZE_IMMUNE: 'Immunité au gel',
+	DEF_DEBUFF_IMMUNE: 'Immunité à Défense↓',
 
 };
 Object.freeze(CONST_EFFECT);
@@ -327,6 +339,7 @@ const CONST_CONDITION = {
     FLAG_STUN_SELF: '[Si étourdi]',
     FLAG_DEBUFF_DEF_SELF: '[Sous l\'effet d\'un debuff de défense]',
     FLAG_REMOVE_DEBUFF_SELF: '[Si des debuffs sont dissipés]',
+	FLAG_REMOVE_DEBUFF_NONE: '[S\'il n\'y a aucun débuff à dissiper]',
     FLAG_REMOVE_BUFF: '[Si des buffs sont dissipés chez l\'ennemi]',
     FLAG_BUFF_SELF: '[Sous l\'effet d\'un buff]',
 
@@ -340,12 +353,13 @@ const CONST_CONDITION = {
     FLAG_ATTACK_ENEMY_STUN: '[Contre un ennemi étourdi]',
 
 	TARGET_SELF: 'Soi-même',
-    TARGET_ALLY: 'Allié(s)',
+    TARGET_ALLY: 'Allié',
 	TARGET_ALLY_TANK: 'Tank Allié',
 	TARGET_ALLY_ATTACK: 'Attaquant Allié',
 	TARGET_ALLY_SUPPORT: 'Soutien Allié',
 	TARGET_ALLY_HEAL: 'Soigneur Allié',
     TARGET_ALLY_ALL: 'Tous les Alliés',
+	TARGET_ALLY_OTHERS: 'Tous les Alliés sauf le lanceur',
     TARGET_ALLY_FIRE: 'Alliés feu',
     TARGET_ALLY_WATER: 'Alliés eau',
     TARGET_ALLY_FOREST: 'Alliés forêt',
@@ -355,6 +369,7 @@ const CONST_CONDITION = {
     TARGET_ALLY_HP_LOW: 'Allié (PV bas)',
 
     TARGET_ENEMY: 'Ennemi',
+	TARGET_ENEMY_SUPPORT: 'Soutien Ennemi',
     TARGET_ENEMY_ALL: 'Tous les Ennemis',
     TARGET_ENEMY_SINGLE: 'Un seul ennemi',
     TARGET_ENEMY_BUFF_NO_DEBUFF: 'Ennemi sous immunité',
@@ -365,8 +380,9 @@ const CONST_CONDITION = {
     TARGET_ENEMY_DEBUFF_NO_REVIVAL: 'Ennemi sous Blocage de résurection',
     TARGET_ENEMY_DEBUFF_NO_BUFF: 'Ennemi sans buff',
     TARGET_ENEMY_DEBUFF_POISON: 'Ennemi empoisonné',
-    TARGET_ENEMY_CC_FREEZE: 'Ennemi gelé',
     TARGET_ENEMY_CC_SILENCE: 'Ennemi sous silence',
+	TARGET_ENEMY_CC_STUN: 'Ennemi étourdi',
+	TARGET_ENEMY_CC_FREEZE: 'Ennemi gelé',
 
     TARGET_RAID_BOSS: 'Boss de raid',
     TARGET_RAID_LUCIEN: 'Lucian, monarque de feu',

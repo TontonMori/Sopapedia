@@ -242,8 +242,10 @@ function _makeSkillEffects($parent, list) {
 }
 
 function _makePassiveEffects($parent, list, isTeamBuff) {
+	console.log("List in _makePassiveEffects:", list);
     for (var idx in list) {
         var item = list[idx];
+		console.log("Item in _makePassiveEffects:", item);
         
         var $frame = $('<div>', {'class': 'media skill-list'});
         var $media = $('<div>', {'class': 'media-left media-middle'});
@@ -301,6 +303,7 @@ function makeSkillInfo($parent, s) {
     $c1.appendTo($row);
 
     makeHead().text('[Passif]').appendTo($c2);
+	console.log("s.passive:", s.passive);
     _makePassiveEffects($c2, s.passive);
 
     makeHr().appendTo($c2);
