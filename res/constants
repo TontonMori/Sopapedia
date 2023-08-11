@@ -136,7 +136,7 @@ const ENUM_DEBUFF = {
     NO_BUFF: { text: 'Antibuff', img: PATH_IMAGE + 'debuff_14_no_buff.png', desc: 'Empêche de recevoir des buffs' },
     CC_FEAR: { text: 'Peur', img: PATH_IMAGE + 'debuff_15_cc_fear.png', desc: 'Empêche toute action' },
     CC_SILENCE: { text: 'Silence', img: PATH_IMAGE + 'debuff_16_cc_silence.png', desc: 'Empêche d\'utiliser des aptitudes actives/combo' },
-    CC_PETRIFY: { text: 'Pétrifié', img: PATH_IMAGE + 'debuff_17_cc_petrify.png', desc: 'Empêche toute action et le chargement de la jauge d\'aptitude' },
+    CC_PETRIFY: { text: 'Pétrifié', img: PATH_IMAGE + 'debuff_17_cc_petrify.png', desc: 'Empêche toute action et le chargement passif de la jauge d\'aptitude' },
     CC_FREEZE: { text: 'Gelé', img: PATH_IMAGE + 'debuff_18_cc_freeze.png', desc: 'Empêche toute action' },
     NO_ENDURE: { text: 'Blocage de résilience', img: PATH_IMAGE + 'debuff_19_no_endure.png', desc: 'Bloque la résilience' },
     NO_REVIVAL: { text: 'Blocage de résurection', img: PATH_IMAGE + 'debuff_20_no_revival.png', desc: 'Bloque la résurection' },
