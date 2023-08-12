@@ -228,6 +228,26 @@ img.Ten {
 	text-shadow: 1px 1px 2px green;
 }
 
+.ContentTable{
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	font-size: medium;
+	text-align: center;
+	border: 1px solid #cccccc;
+}
+.ContentTable td{
+	border: 1px solid #cccccc;
+}
+.ContentTable th{
+	padding-left: 5px;
+	padding-right: 5px;
+	border: 1px solid #cccccc;
+	font-weight: 1000;
+	color: burlywood;
+
+}
+
 #video-background {
     position: absolute;
     width: 100%;
