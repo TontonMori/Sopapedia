@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				{ text: "Les rôles", href: "roles.html" },
 				{ text: "Équipement et artefacts", href: "equipement.html" },
 				{ text: "Potentiels", href: "potentiels.html" },
-				{ text: "Combo et marques", href: "combo.html" },
+				{ text: "Combos et marques", href: "combo.html" },
 				{ text: "Transcendance, éveil et lien", href: "transcendance.html" },
             ]
         },
