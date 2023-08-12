@@ -208,6 +208,10 @@ img.Ten {
 	background-color: #EFCDF8;
 }
 
+.emoji {
+    height: 21px;
+}
+
 .Buff {
 	text-shadow: 1px 1px 2px blue;
 }
@@ -222,4 +226,12 @@ img.Ten {
 
 .Team {
 	text-shadow: 1px 1px 2px green;
+}
+
+#video-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Scale the video to cover the entire container */
+	 z-index: -1;
 }
