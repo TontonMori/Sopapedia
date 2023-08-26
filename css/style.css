@@ -208,8 +208,27 @@ img.Ten {
 	background-color: #EFCDF8;
 }
 
+.image-container {
+	position: relative;
+	display: inline-block;
+}
+
+.image-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: right;
+	margin: 2px 4px 0 0;
+	color: #F4BF4F;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.image-overlay div {
+	line-height: 1;
+}
+
 .emoji {
-    height: 21px;
+	height: 21px;
 }
 
 .Buff {
