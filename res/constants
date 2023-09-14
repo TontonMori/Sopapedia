@@ -1,6 +1,3 @@
-const APP_VERSION = '6.4';
-const UPDATE_DATE = '2022-01-11';
-
 const PATH_IMAGE = 'res/img/';
 const IMAGE_EMPTY_CHARACTER = 'character_empty.png';
 const IMAGE_EMPTY_SKILL = 'ico_empty_info.png';
@@ -80,16 +77,35 @@ const ENUM_SERVANT_JOB = {
     DPS_DOT: { key: 'DPS_DOT', text: 'Dégâts continus' },
     REVIVAL_SINGLE: { text: 'Résurection (mono)' },
     REVIVAL_ALL: { text: 'Résurection (multi)' },
+	TANK_ANTIDEF: { text: 'Tank résistant à l\'antidef' },
+	TANK_CRIT: { text: 'Tank résistant aux coups critiques' },
+	TANK_MONOHIT: { text: 'Tank avec réduction des dégâts subis par coup' },
+	TANK_MULTIHIT: { text: 'Tank résistant aux frappes multiples' },
     TANK_ENDURE: { text: 'Résilience' },
     NONE: { key: 'NONE', text: 'Aucun' },
 };
 Object.freeze(ENUM_SERVANT_JOB);
 
+const ENUM_DAMAGE_TYPE = {
+	ATK: { id: 'ATK', text: 'Dégâts en fonction de l\'attaque', img: PATH_IMAGE + 'Buff_DefensePerDown_Attack.png' },
+	DEF: { id: 'DEF', text: 'Dégâts en fonction de la défense', img: PATH_IMAGE + 'Buff_DefensePerDown_Defense.png' },
+	SPD: { id: 'SPD', text: 'Dégâts en fonction de la vitesse', img: PATH_IMAGE + 'Buff_DefensePerDown_Haste.png' },
+	HP: { id: 'HP', text: 'Dégâts en fonction des PV de l\'ennemi', img: PATH_IMAGE + 'Buff_DefensePerDown_TOT.png' },
+	ANTIDEF: { id: 'ANTIDEF', text: 'Dégâts qui ignore la défense ennemi', img: PATH_IMAGE + 'Buff_DefensePerDown_IgnoreDefense.png' },
+};
+Object.freeze(ENUM_DAMAGE_TYPE);
+
+const ENUM_HIT_TYPE = {
+	AOE: { id: 'AOE', text: 'Attaque de zone' },
+	MONO: { id: 'MONO', text: 'Monocible' },
+};
+Object.freeze(ENUM_HIT_TYPE);
+
 const ENUM_BUFF = {
     ATK: { text: 'Attaque↑', img: PATH_IMAGE + 'Buff_AttackPerUp.png', desc: 'Augmente l\'attaque de 10\% par niveau. (5 niveaux max)' },
     ATK_WAVE: { text: 'Attaque↑ (Vague)', img: PATH_IMAGE + 'Buff_AttackPerUp.png', desc: 'L\'effet de vague augmente l\'attaque. (Niveau 2 : 33\%, Niveau 3 : 50\%)' },
-    DEF: { text: 'Défense↑', img: PATH_IMAGE + 'Buff_DefUP', desc: 'Augmente la défense de 14\% par niveau. (5 niveaux max)' },
-    DEF_WAVE: { text: 'Défense↑ (Vague)', img: PATH_IMAGE + 'Buff_DefUP', desc: 'L\'effet de vague augmente la défense. (Niveau 2 : 46\%, Niveau 3 : 70\%)' },
+    DEF: { text: 'Défense↑', img: PATH_IMAGE + 'Buff_DefUP.png', desc: 'Augmente la défense de 14\% par niveau. (5 niveaux max)' },
+    DEF_WAVE: { text: 'Défense↑ (Vague)', img: PATH_IMAGE + 'Buff_DefUP.png', desc: 'L\'effet de vague augmente la défense. (Niveau 2 : 46\%, Niveau 3 : 70\%)' },
     CRITICAL: { text: 'Taux critique↑', img: PATH_IMAGE + 'Buff_CriticalPerUp.png', desc: 'Augmente le taux critique de 6\% par niveau. (5 niveaux max)' },
     SPD: { text: 'Vitesse↑', img: PATH_IMAGE + 'Buff_HastePerUp.png', desc: 'Augmente la vitesse de 6\% par niveau. (5 niveaux max)' },
     SPD_WAVE: { text: 'Vitesse↑ (Vague)', img: PATH_IMAGE + 'Buff_HastePerUp.png', desc: 'L\'effet de vague augmente la vitesse. (Niveau 3 :  30\%)' },
@@ -98,7 +114,7 @@ const ENUM_BUFF = {
     MISS: { text: 'Frappes Obliques↑', img: PATH_IMAGE + 'Buff_MissHitPerUp.png', desc: 'Augmente le taux de frappes obliques de 5\% par niveau. (5 niveaux max)' },
     CRI_DEF: { text: 'Résistance aux coups critiques', img: PATH_IMAGE + 'Buff_CriticalResistPerUp.png', desc: 'Réduit les dégâts critiques reçus 10\% par niveau. (5 niveaux max)' },
     NO_DEBUFF: { text: 'Immunité', img: PATH_IMAGE + 'Buff_ImmuneWeaken.png', desc: 'Empêche de recevoir des debuffs' },
-    NO_DAMAGE: { text: 'Invincibilité', img: PATH_IMAGE + 'Buff_ImmuneAllAttack', desc: 'Empêche de subir des dégâts' },
+    NO_DAMAGE: { text: 'Invincibilité', img: PATH_IMAGE + 'Buff_ImmuneAllAttack.png', desc: 'Empêche de subir des dégâts' },
     SHIELD: { text: 'Bouclier', img: PATH_IMAGE + 'Buff_Shield.png', desc: 'Absorbe les dégâts' },
     PROTECT_ALLY: { text: 'Escorte', img: PATH_IMAGE + 'Buff_Guard.png', desc: 'Se lance sur tous les autres alliés; subis 20\% de dégâts à leur place' },
     VAMPIRE: { text: 'Vampire', img: PATH_IMAGE + 'Buff_LifeSteal.png', desc: 'Soigne de 20\% des dégâts infligés. (jusqu\'à 10000)' },
@@ -371,7 +387,10 @@ const CONST_CONDITION = {
     TARGET_ALLY_HP_LOW: 'Allié (PV bas)',
 
     TARGET_ENEMY: 'Ennemi',
+	TARGET_ENEMY_TANK: 'Tank Ennemi',
+	TARGET_ENEMY_ATTACK: 'Attaquant Ennemi',
 	TARGET_ENEMY_SUPPORT: 'Soutien Ennemi',
+	TARGET_ENEMY_HEAL: 'Soigneur Ennemi',
     TARGET_ENEMY_ALL: 'Tous les Ennemis',
     TARGET_ENEMY_SINGLE: 'Un seul ennemi',
     TARGET_ENEMY_BUFF_NO_DEBUFF: 'Ennemi sous immunité',
@@ -397,3 +416,4 @@ const CONST_CONDITION = {
 Object.freeze(CONST_CONDITION);
 
 // ----
+console.log("Constants loaded");
