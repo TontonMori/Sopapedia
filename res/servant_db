@@ -95,7 +95,7 @@ class Servant {
         this.skill_brand = skill_brand;
         this.passive = passive;
 
-        this.brand_default = brand_default
+        this.brand_default = brand_default;
         this.brand_sequel = brand_sequel;
 
         this.team_buff = team_buff;
@@ -104,7 +104,6 @@ class Servant {
 
         this.note = note;
 
-		this.alternativeForms = [];
     }
 
     summary() {
@@ -3573,7 +3572,7 @@ DICT_SERVANT[getKey(SERVANT_NAME.Shamir, ENUM_ELEMENT.DARK)] = new Servant(
 
 DICT_SERVANT[getKey(SERVANT_NAME.Cindy, ENUM_ELEMENT.FIRE)] = new Servant(
     5, SERVANT_NAME.Cindy, ENUM_ELEMENT.FIRE,
-    [ENUM_SERVANT_ROLE.TANK, ENUM_SERVANT_JOB.TANK_ENDUREs],
+    [ENUM_SERVANT_ROLE.TANK, ENUM_SERVANT_JOB.TANK_ENDURE],
     PATH_IMAGE + 'char_049_Cindy_Fire.png',
     [[CONST_EFFECT.SKILL_CHARGE_10, CONST_CONDITION.TARGET_SELF], [ENUM_BUFF.PROVOKE, 0]],
     [[ENUM_BUFF.DEF, 5, CONST_CONDITION.TARGET_SELF]],
