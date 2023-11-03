@@ -278,6 +278,7 @@ const CONST_EFFECT = {
     DECREASE_IGNORE_DEF_DMG_70: 'Réduit les dégâts subis d\'attaques anti-def de 70\%',
     MAX_DMG_OF_HP_30: 'Dégâts maximum de 30\% des PV',
     MAX_DMG_REDUCED_ON_BRAND_MULTI: 'Réduit les dégâts d\'aptitudes de combo de 90\% à partir du second coup',
+	MAX_DMG_PER_HIT_30: 'La quantité de dégâts subis d\'un coup ne dépasse pas 30% des PV max',
 
     SKILL_CHARGE_5: 'Augmente la jauge d\'aptitude de 5\%',
     SKILL_CHARGE_10: 'Augmente la jauge d\'aptitude de 10\%',
