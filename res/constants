@@ -416,5 +416,4 @@ const CONST_CONDITION = {
 };
 Object.freeze(CONST_CONDITION);
 
-// ----
 console.log("Constants loaded");

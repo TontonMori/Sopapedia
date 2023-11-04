@@ -119,3 +119,17 @@ document.addEventListener("DOMContentLoaded", function () {
     var navbarContainer = document.getElementById("navbar");
     navbarContainer.appendChild(navbar);
 });
+
+//Ouverture d'une galerie d'images
+function openModal(img) {
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("img01");
+  modal.style.display = "block";
+  modalImg.src = img.src;
+}
+
+//Fermeture d'une galerie d'images
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
