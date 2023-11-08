@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				{ text: "Donjons d'équipement", href: "donjon.html" },
 				{ text: "Donjons d'éveil", href: "hall.html" },
 				{ text: "JcJ Infini, combat mondial", href: "jcj.html" },
-				{ text: "Donjons mystères", href: "sd.html" },
+				{ text: "Donjons secrets", href: "sd.html" },
             ]
         },
 
