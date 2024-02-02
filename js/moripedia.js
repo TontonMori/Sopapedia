@@ -332,7 +332,6 @@ function _makePassiveEffects($parent, list, isTeamBuff) {
         } else {    
             var cond_or_desc = item[0];
             var skill_effect = item[1];
-            console.log(skill_effect);
             var level = item[2];
             
             var desc = '<small class="condition">' + cond_or_desc + '</small> ' + skill_effect.text + '';
