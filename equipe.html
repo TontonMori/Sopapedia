@@ -40,7 +40,7 @@
 		<li class="flex-item">
 			<p><strong>La compo Tartiflette nécessite :</strong><br>
 			un tank avec le passif de réduction de dégâts subis en un coup, idéalement boosté via le potentiel spécial 2. Soit Heide Feu, soit Lenore Ténèbres.<br>
-			un ou deux soigneurs avec le passif de soin sur compétence de combo, et le potentiel de bouclier sur soin excédentaire. Exemple : Ella Forêt, Teresia Feu...<br>
+			un ou deux soigneurs avec le passif de soin sur compétence de combo, et le potentiel de bouclier sur soin excédentaire. Exemple : Teresia Feu, Eimyria Feu...<br>
 			le reste de la compo assurant les dégâts.<br><br>
 			Votre tank devra avoir aussi peu de points de vie que possible. Idéalement, seul votre effet de collection devrait lui donner des points de vie. Mettez-lui des jambières 1* +0 si vous tenez à l'équiper. Il va sans dire que vous voudrez maintenir le plus bas niveau de transcendance et d'éveil possible pour débloquer son potentiel spécial 2, chaque niveau augmentant les stats et donc les points de vie.<br>
 			A l'inverse vos soigneurs devront avoir un maximum de points de vie tout en ayant 350 de vitesse. Chaque fois que vos soigneurs utiliserons leur aptitude de soin, le potentiel posera sur le tank un bouclier largement supérieur aux PV max de ce dernier. Néanmoins, comme les dégâts qu'un coup peut infliger à votre tank sont cappés à, avec le potentiel spécial 2 niveau 20, 20% des PV max, il faudra de nombreux coups pour venir à bout de ce bouclier. Par exemple, si votre tank a 200.000 PV max, il ne pourra recevoir plus de 40.000 points de dégâts en une seule fois. S'il reçoit un bouclier d'1.000.000 de PV, il pourra donc tanker 30 coups avant de mourrir, peu importe leur puisance initiale.<br>
@@ -52,7 +52,17 @@
 	</div>
 
 	<script src="js/main.js"></script>
-	<script>document.body.style.backgroundImage = "url('" + imgset() + "')";</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var imageUrl = imgset();
+			document.body.style.backgroundImage = "url('" + imageUrl + "')";
+			document.body.style.backgroundPosition = "center center";
+			document.body.style.backgroundSize = "cover";
+			document.body.style.backgroundRepeat = "no-repeat";
+			document.body.style.backgroundColor = "black";
+			document.body.style.backgroundAttachment = "fixed";
+		});
+	</script>
 
 </body>
 

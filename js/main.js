@@ -1,7 +1,5 @@
 //Fond d'écran aléatoire parmis une liste
 function imgset() {
-
-	//Créé une array pour les images
     var randomImage = new Array();
 		randomImage[0] = "res/bg/en-pop-gallery1.jpg";
 		randomImage[1] = "res/bg/en-pop-gallery2.jpg";
@@ -17,11 +15,7 @@ function imgset() {
 		randomImage[11] = "res/bg/en-pop-gallery12.jpg";
 		randomImage[12] = "res/bg/en-pop-gallery13.jpg";
 		randomImage[13] = "res/bg/en-pop-gallery14.jpg";
-
-    //Génère un nombre aléatoire
     var number = Math.floor(Math.random() * randomImage.length);
-
-    //Retourne l'image correspondante au nombre généré
     return randomImage[number];
 }
 
@@ -30,9 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
     var navbar = document.createElement("div");
     navbar.classList.add("navbar");
 
+    var menuButton = document.createElement("a");
+        menuButton.href = "javascript:void(0);";
+        menuButton.style.fontSize = "15px";
+        menuButton.classList.add("icon");
+        menuButton.innerHTML = "&#9776;";
+        menuButton.onclick = responsiveNavbar;
+        navbar.appendChild(menuButton);
+
     var links = [
         { text: "Accueil", href: "index.html" },
-        { text: "Sopapedia", href: "database.html" },
+        { text: "Moripedia", href: "moripedia.html" },
         { text: "Discord", href: "https://discord.gg/KPNFdQcfbe" },
     ];
 
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var dropdowns = [
         {
-            text: "Serviteurs",
+            text: "Serviteurs ▼",
             items: [
 				{ text: "La création d'une équipe", href: "equipe.html" },
 				{ text: "Les rôles", href: "roles.html" },
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         {
-            text: "Modes de jeu",
+            text: "Modes de jeu ▼",
             items: [
 				{ text: "Terrain d'exploration", href: "exploration.html" },
 				{ text: "Donjon d'évènement", href: "event.html" },
@@ -76,8 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
 		{
-            text: "Meta",
+            text: "Meta ▼",
             items: [
+                { text: "Bien débuter", href: "debutant.html" },
 				{ text: "Buffs et debuffs", href: "mods.html" },
 				{ text: "Combinaisons et fusions", href: "fusion.html" },
 				{ text: "Effet de collection", href: "ce.html" },
@@ -119,6 +122,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var navbarContainer = document.getElementById("navbar");
     navbarContainer.appendChild(navbar);
 });
+
+function responsiveNavbar() {
+    var x = document.getElementById("navbar");
+    if (x.className === "navbar") {
+      x.className += " responsive";
+    } else {
+      x.className = "navbar";
+    }
+}
 
 //Ouverture d'une galerie d'images
 function openModal(img) {

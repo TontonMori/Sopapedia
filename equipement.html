@@ -101,13 +101,13 @@
 		</li>
 		<li class="flex-item">
 			<p><img src="res/img/role_4_support.png" class="emoji"> Soutiens (JcE et invasion de boss)<br><br>
-			Sets : Double vent <img src="res/img/set_vent.png" class="emoji"> <img src="res/img/set_vent.png" class="emoji"> ou vent et double chaînes <img src="res/img/set_vent.png" class="emoji"> <img src="res/img/set_chaînes.png" class="emoji"> <img src="res/img/set_chaînes.png" class="emoji"><br>
+			Sets : Vent et double chaînes <img src="res/img/set_vent.png" class="emoji"> <img src="res/img/set_chaînes.png" class="emoji"> <img src="res/img/set_chaînes.png" class="emoji"> ou double vent <img src="res/img/set_vent.png" class="emoji"> <img src="res/img/set_vent.png" class="emoji"><br>
 			<img src="res/img/stuff_2.png" class="emoji"> Vitesse ou PV ou défense<br>
 			<img src="res/img/stuff_4.png" class="emoji"> PV ou défense<br>
 			<img src="res/img/stuff_6.png" class="emoji"> PV ou défense ou précision<br>
 			<img src="res/img/stuff_8.png" class="emoji"> PV ou défense ou précision<br>
 			<img src="res/img/stuff_7.png" class="emoji"> Vitesse<br><br>
-			<span style="color: red;">Prérequis important : 250% de précision, 350 de vitesse. Le double vent est idéal pour les raids, le vent et double chaînes et plus adapté aux tours, au terrain d'exploration et au sanctuaire.</span></p>
+			<span style="color: red;">Prérequis important : 250% de précision, 350 de vitesse.</span></p>
 		</li>
 		<li class="flex-item">
 			<p><img src="res/img/role_4_support.png" class="emoji"> Soutiens (JcJ et guerre de guilde)<br><br>
@@ -130,7 +130,17 @@
 	</div>
 
 	<script src="js/main.js"></script>
-	<script>document.body.style.backgroundImage = "url('" + imgset() + "')";</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var imageUrl = imgset();
+			document.body.style.backgroundImage = "url('" + imageUrl + "')";
+			document.body.style.backgroundPosition = "center center";
+			document.body.style.backgroundSize = "cover";
+			document.body.style.backgroundRepeat = "no-repeat";
+			document.body.style.backgroundColor = "black";
+			document.body.style.backgroundAttachment = "fixed";
+		});
+	</script>
 
 </body>
 

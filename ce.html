@@ -17,8 +17,30 @@
 	<!-- div pour l'insertion de la barre de navigation par menu.js -->
 	</div>
 
+	<div class="page-header">
+		<h1 class="title">Effet de collection</h1>
+	</div>
+
+	<div class="flex-container">
+		<li class="flex-item">
+			<p>Chaque fois que vous atteingnez un palier de transcendance ou d'éveil pour la première fois avec un serviteur spécifique, vous débloquerez un niveau d'effet de collection, abrégé CE pour "Collection Effect" en Anglais. Vous commencez au niveau 0 (serviteur obtenu), et pouvez ainsi atteindre le niveau 15 (10 transcendances, 5 éveils). Chaque niveau, y compris le niveau 0, vous octroiera un petit bonus de statistique qui s'appliquera à l'ensemble des serviteurs du même type. Vous aurez donc un CE pour les tanks, un pour les soigneurs, un pour les soutiens, et un pour chaque type de dégâts des attaquants (Attaque, défense, vitesse, points de vie ennemis, antidef). Les bonus de statistiques sont prédéfinis et croissants. Les serviteurs de rang supérieurs ont de meilleurs bonus, et les serviteurs lumières et ténèbres 5* ont de meilleurs bonus que les autres éléments. Le CE est une composante importante de votre progression, puisqu'il pourra représenter l'équivalent de plusieurs pièces d'équipements en terme de statistiques, et ce, passivement. Le CE est par ailleurs comptabilisé dans les bonus de stats en vert sur l'écran des serviteurs et interragit de la même manière avec les différents bonus/malus que les bonus liés à l'équipement.<br>
+			Supprimer un serviteur ne supprime pas les niveaux de CE débloqué avec : chaque niveau débloqué l'est définitivement. Le lien ne débloque pas de CE. Le CE n'est pas désactivable.<br><br>
+			Vous pouvez voir votre effet de collection depuis le menu dédié (accessible depuis le menu principal en haut à droite de l'écran) ou dans l'écran des serviteurs depuis les menus à droite. Ce dernier point est aussi valide pour les autres joueurs que vous visitez, vous pourrez voir leur CE.</p>
+		</li>
+	</div>
+
 	<script src="js/main.js"></script>
-	<script>document.body.style.backgroundImage = "url('" + imgset() + "')";</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var imageUrl = imgset();
+			document.body.style.backgroundImage = "url('" + imageUrl + "')";
+			document.body.style.backgroundPosition = "center center";
+			document.body.style.backgroundSize = "cover";
+			document.body.style.backgroundRepeat = "no-repeat";
+			document.body.style.backgroundColor = "black";
+			document.body.style.backgroundAttachment = "fixed";
+		});
+	</script>
 
 </body>
 

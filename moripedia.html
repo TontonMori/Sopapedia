@@ -5,18 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta property="og:title" content="Encyclopédie">
+	<meta property="og:title" content="EMoripedia">
 	<meta property="og:description" content="Encyclopédie répertoriant tous les serviteurs, avec filtres de recherches.">
 	<meta property="og:image" content="res/img/char_040_White_Light.png">
     <link rel="icon" href="res/favicon.ico">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/database.css">
-	
-	    <title>Encyclopédie</title>
+    <link rel="stylesheet" href="css/moripedia.css">
+	<title>Moripedia</title>
 </head>
-
 <body>
-
 	<div class="navbar" id="navbar">
 	<!-- div pour l'insertion de la barre de navigation par menu.js -->
 	</div>
@@ -27,15 +24,20 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <p class="lead"><strong>▶ Filtre de recherche</strong></p>
+                <p class="lead"><strong>▶ Filtres de recherche</strong></p>
             </div>
             <div class="col-sm-6" style="display: flex;">
                 <input type="text" class="form-control" id="inputServantName" placeholder="Nom du serviteur" onkeyup="if(window.event.keyCode == 13) { findServantByName(); }">
-                <button type="button" class="btn btn-primary" style="margin-left: 6px" onclick="findServantByName();">Recherche</button>
-                <button type="button" class="btn btn-secondary" style="margin-left: 6px" onclick="resetSearchName();">Annuler</button>
+                <button type="button" class="hol-btn btn-search" onclick="findServantByName();">
+					Recherche
+				</button>
+				<button type="button" class="hol-btn btn-cancel" onclick="resetSearchName();">
+					Annuler
+				</button>
+
             </div>
         </div>
-        <p><strong>Filtre par défault:</strong> Seuls les serviteurs correspondant aux éléments sélectionnés apparaîtront.</p>
+        <p><strong>Filtre par défault : </strong>Seuls les serviteurs correspondant aux éléments sélectionnés apparaîtront.</p>
         <div class="row">
             <div class="col-sm-6">
                 <div class="panel panel-default">
@@ -43,48 +45,39 @@
                         <h3 class="panel-title">Informations de base</h3>
                     </div>
                     <div class="panel-body">
-                        <h5>- Élément <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterElement');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterElement');">[Tout décocher]</a></small></span></h5>
+                        <h5>Élément<span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterElement');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterElement');">[Tout décocher]</a></small></span></h5>
                         <div id="filterElement"></div>
-                        <h5>- Rôle <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterRole');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterRole');">[Tout décocher]</a></small></span></h5>
+                        <h5>Rôle<span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterRole');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterRole');">[Tout décocher]</a></small></span></h5>
                         <div id="filterRole"></div>
-                        <h5>- Bonus d'équipe (Zone) <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterTeamBuff');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterTeamBuff');">[Tout décocher]</a></small></span></h5>
+                        <h5>Bonus d'équipe (Zone)<span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterTeamBuff');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterTeamBuff');">[Tout décocher]</a></small></span></h5>
                         <div id="filterTeamBuff"></div>
+						<h5>Marque primaire<span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterPrimaryMark');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterPrimaryMark');">[Tout décocher]</a></small></span></h5>
+                        <div id="filterPrimaryMark"></div>
+                        <h5>Marque secondaire<span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterSecondaryMark');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterSecondaryMark');">[Tout décocher]</a></small></span></h5>
+                        <div id="filterSecondaryMark"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Type de dégâts</h3>
+                        <h3 class="panel-title">Fonction</h3>
                     </div>
                     <div class="panel-body" id="filterJob">
                         <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterJob');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterJob');">[Tout décocher]</a></small></span>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Marque</h3>
-                    </div>
-                    <div class="panel-body">
-                        <h5>- Primaire <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterBrand');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterBrand');">[Tout décocher]</a></small></span></h5>
-                        <div id="filterBrand"></div>
-                        <h5>- Secondaire <span class="float-top-right"><small><a onclick="checkEveryCheckbox('filterBrandSequel');">[Tout Cocher]</a> &nbsp;&nbsp; <a onclick="uncheckEveryCheckbox('filterBrandSequel');">[Tout décocher]</a></small></span></h5>
-                        <div id="filterBrandSequel"></div>
-                    </div>
-                </div>
-            </div>
         </div>
         
-        <p><strong>Filtres détaillés :</strong> les filtres tels que les effets d'affaiblissement/d'amélioration, les capacités spéciales et les effets relationnels peuvent être développés/réduits en cliquant dessus.   <small>(Affiche les serviteurs qui incluent au moins un élément sélectionné. S'il n'y a pas de sélection, tous sont affichés.)</small></p>
+        <p><strong>Filtres détaillés : </strong>les filtres tels que les effets d'affaiblissement/d'amélioration, les capacités spéciales et les effets relationnels peuvent être développés/réduits en cliquant dessus.   <small>(Affiche les serviteurs qui incluent au moins un élément sélectionné. S'il n'y a pas de sélection, tous sont affichés.)</small></p>
         <div class="row">
             <div class="col-sm-6 panel-group" id="accordionDebuff" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-danger">
+                <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingDebuff">
                         <h3 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordionDebuff" href="#collapseFilterDebuff" aria-expanded="false" aria-controls="collapseFilterDebuff">
-                                Debuff
+                                Debuffs
                             </a>
                         </h3>
                     </div>
@@ -96,11 +89,11 @@
                 </div>
             </div>
             <div class="col-sm-6 panel-group" id="accordionBuff" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-info">
+                <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingBuff">
                         <h3 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordionBuff" href="#collapseFilterBuff" aria-expanded="false" aria-controls="collapseFilterBuff">
-                                Buff
+                                Buffs
                             </a>
                         </h3>
                     </div>
@@ -113,18 +106,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 panel-group" id="accordionUtil" role="tablist" aria-multiselectable="true">
+            <div class="col-sm-6 panel-group" id="accordionEffect" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingUtil">
+                    <div class="panel-heading" role="tab" id="headingEffect">
                         <h3 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordionUtil" href="#collapseFilterUtil" aria-expanded="false" aria-controls="collapseFilterUtil">
-                                Capacité spéciale
+                            <a data-toggle="collapse" data-parent="#accordionEffect" href="#collapseFilterEffect" aria-expanded="false" aria-controls="collapseFilterEffect">
+                                Capacités spéciales
                             </a>
                         </h3>
                     </div>
-                    <div id="collapseFilterUtil" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingUtil">
-                        <div class="panel-body" id="filterUtil">
-                            <span class="float-top-right"><small><a onclick="uncheckEveryCheckbox('filterUtil');">[Tout décocher]</a></small></span>
+                    <div id="collapseFilterEffect" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEffect">
+                        <div class="panel-body" id="filterEffect">
+                            <span class="float-top-right"><small><a onclick="uncheckEveryCheckbox('filterEffect');">[Tout décocher]</a></small></span>
                         </div>
                     </div>
                 </div>
@@ -134,23 +127,54 @@
                     <div class="panel-heading" role="tab" id="headingRelation">
                         <h3 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordionRelation" href="#collapseFilterRelation" aria-expanded="false" aria-controls="collapseFilterRelation">
-                                Cible d'un effet relationnel
+                                Effet de relation
                             </a>
                         </h3>
                     </div>
                     <div id="collapseFilterRelation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRelation">
                         <div class="panel-body">
                             <span class="float-top-right"><small><a onclick="uncheckEveryCheckbox('filterRelationEnemy'); uncheckEveryCheckbox('filterRelationAlly');">[Tout décocher]</a></small></span>
-                            <h5>- Ennemi</h5>
+                            <h5>Ennemi</h5>
                             <div id="filterRelationEnemy"></div>
-                            <h5>- Allié</h5>
+                            <h5>Allié</h5>
                             <div id="filterRelationAlly"></div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-6 panel-group" id="accordionSpe4" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingSpe4">
+                        <h3 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordionSpe4" href="#collapseFilterSpe4" aria-expanded="false" aria-controls="collapseFilterSpe4">
+                                Potentiel spécial 4
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapseFilterSpe4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSpe4">
+                        <div class="panel-body" id="filterSpe4">
+                            <span class="float-top-right"><small><a onclick="uncheckEveryCheckbox('filterSpe4');">[Tout décocher]</a></small></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 panel-group" id="accordionSpe5" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingSpe5">
+                        <h3 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordionSpe5" href="#collapseFilterSpe5" aria-expanded="false" aria-controls="collapseFilterSpe5">
+                                Potentiel spécial 5
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="collapseFilterSpe5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSpe5">
+                        <div class="panel-body" id="filterSpe5">
+                            <span class="float-top-right"><small><a onclick="uncheckEveryCheckbox('filterSpe5');">[Tout décocher]</a></small></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="text-right">Version originale par <i>Askai</i>, traduite et mise à jour par <i>Mori</i>.</p>
         
         <div class="row">
             <table class="table table-striped">
@@ -169,12 +193,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    
-    <script src="res/constants"></script>
-    <script src="res/servant_db"></script>
+	<script src="js/constants.js"></script>
+    <script src="js/servants.js"></script>
+    <script src="js/moripedia.js"></script>
     <script src="js/main.js"></script>
-	<script src="js/database.js"></script>
-
 </body>
-
 </html>

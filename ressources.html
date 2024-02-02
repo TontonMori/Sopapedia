@@ -41,15 +41,19 @@
 			Préférez le marché noir à la boutique, ça revient BEAUCOUP moins cher !</p>
 		</li>
 	</div>
-	<h1>Tuto or</h1>
-	<div class="flex-container">
-		<li class="flex-item">
-			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ece0nlfWV5Q?si=X7Lai2B7InLkKvi_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-		</li>
-	</div>
 
 	<script src="js/main.js"></script>
-	<script>document.body.style.backgroundImage = "url('" + imgset() + "')";</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var imageUrl = imgset();
+			document.body.style.backgroundImage = "url('" + imageUrl + "')";
+			document.body.style.backgroundPosition = "center center";
+			document.body.style.backgroundSize = "cover";
+			document.body.style.backgroundRepeat = "no-repeat";
+			document.body.style.backgroundColor = "black";
+			document.body.style.backgroundAttachment = "fixed";
+		});
+	</script>
 
 </body>
 

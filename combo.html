@@ -29,7 +29,7 @@
 	<h1>L'enchaînement des marques pour faire des combos</h1>
 	<div class="flex-container">
 		<li class="flex-item">
-		<p>Chaque serviteur dispose d'une marque primaire et d'une marque secondaire. Les marques primaires peuvent être changées, mais les secondaires sont fixes. Il y a 4 marques : soleil levant <img src="res/img/brand-sequel_1_sunrise.png" class="emoji">, soleil couchant <img src="res/img/brand-sequel_2_sunset.png" class="emoji">, éclipse <img src="res/img/brand-sequel_3_solar-eclipse.png" class="emoji">et coucher de lune <img src="res/img/brand-sequel_4_moonset.png" class="emoji">.<br><br>
+		<p>Chaque serviteur dispose d'une marque primaire et d'une marque secondaire. Les marques primaires peuvent être changées, mais les secondaires sont fixes. Il y a 4 marques : soleil levant <img src="res/img/Mark_Sunrise.png" class="emoji">, soleil couchant <img src="res/img/Mark_Sunset.png" class="emoji">, éclipse <img src="res/img/Mark_Eclipse.png" class="emoji">et coucher de lune <img src="res/img/Mark_Moonset.png" class="emoji">.<br><br>
 		Les marques primaires et secondaires tiennent lieu d'icone pour la troisième aptitude de chaque serviteur, l'aptitude de combo. Elle porte ce nom car il est possible d'enchaîner les aptitudes de combo de vos différents serviteurs à l'aide des marques. Comment ? C'est en fait très simple.<br><br>
 		<img src="res/scr/IMG_0306.jpg"><br><br>
 		Sur cette image, vous pouvez voir clairement les marques primaires en grand, et les marques secondaires en petit dans le coin bas droit. Si vous ne connaissez pas les serviteurs, il y a, de gauche à droite : Mabel, Kasar, Teresia, et Sinistra. Lorsqu'un serviteur utilise sa combo, il a une chance d'enchaîner en lançant la combo d'un autre serviteur dont la marque primaire correspond à la marque secondaire du premier serviteur. Dans notre exemple, Kasar peut lancer la combo de Teresia, qui peut lancer la combo de Sinistra, qui elle-même peut lancer la combo de Mabel, qui peut lancer la combo de Kasar. Exemple en vidéo :<br><br>
@@ -43,7 +43,17 @@
 	</div>
 	
 	<script src="js/main.js"></script>
-	<script>document.body.style.backgroundImage = "url('" + imgset() + "')";</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var imageUrl = imgset();
+			document.body.style.backgroundImage = "url('" + imageUrl + "')";
+			document.body.style.backgroundPosition = "center center";
+			document.body.style.backgroundSize = "cover";
+			document.body.style.backgroundRepeat = "no-repeat";
+			document.body.style.backgroundColor = "black";
+			document.body.style.backgroundAttachment = "fixed";
+		});
+	</script>
 
 </body>
 

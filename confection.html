@@ -8,7 +8,7 @@
     <link rel="icon" href="res/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 	
-	    <title>GameFamily</title>
+	    <title>Confection</title>
 </head>
 
 <body style= background-attachment:fixed;>
@@ -18,7 +18,17 @@
 	</div>
 
 	<script src="js/main.js"></script>
-	<script>document.body.style.backgroundImage = "url('" + imgset() + "')";</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var imageUrl = imgset();
+			document.body.style.backgroundImage = "url('" + imageUrl + "')";
+			document.body.style.backgroundPosition = "center center";
+			document.body.style.backgroundSize = "cover";
+			document.body.style.backgroundRepeat = "no-repeat";
+			document.body.style.backgroundColor = "black";
+			document.body.style.backgroundAttachment = "fixed";
+		});
+	</script>
 
 </body>
 

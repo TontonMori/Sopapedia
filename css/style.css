@@ -18,7 +18,7 @@
 
 body {
 	font-family: 'Heir of Light';
-	font-size: larger;
+	font-size: 16px;
 	color: white;
 	margin: 0;
 	align-items: center;
@@ -26,99 +26,131 @@ body {
 }
 
 a {
-  color: white;
+    color:#fff
 }
-
-/* Navbar container */
 .navbar {
-  background-color: #333333;
-  font-family: 'Heir of Light bold' !important;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 2;
+    overflow: hidden;
+    color: orange;
+    background-color: black;
 }
 
-/* Links inside the navbar */
 .navbar a {
-  float: left;
-  font-size: 16px;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    float: left;
+    display: block;
+    color: orange;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-/* The dropdown container */
+.navbar .icon {
+    display: none;
+}
+
 .dropdown {
-  float: left;
-  overflow: hidden;
+    float: left;
+    overflow: hidden;
 }
 
-/* Dropdown button */
 .dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
+    font-size: 17px;    
+    border: none;
+    outline: none;
+    color: orange;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
 }
 
-/* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: purple;
-}
-
-/* Dropdown content (hidden by default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+    float: none;
+    color: orange;
+    background-color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
 }
 
-/* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #ddd;
+.navbar a:hover, .dropdown:hover .dropbtn, .dropdown-content a:hover {
+    color: red;
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
-.page-header {
-  padding: 30px;
+@media screen and (max-width: 600px) {
+    .navbar a:not(:first-child), .dropdown .dropbtn {
+        display: none;
+    }
+    .navbar a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .navbar.responsive {position: relative;}
+    .navbar.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .navbar.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .navbar.responsive .dropdown {float: none;}
+    .navbar.responsive .dropdown-content {position: relative;}
+    .navbar.responsive .dropdown .dropbtn {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+.servant {
+    display: inline-block;
+    margin: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.servant img {
+    display: block;
+    width: 100px; /* ou la taille que vous voulez */
+    height: auto;
+}
+
+.title {
+	font-size: 3em;
 }
 
 h1 {
 	display: flex;
+    font-size: 2em;
 	text-decoration: underline overline white;
 	text-shadow: 4px 4px 8px black, 0 0 1em black, 0 0 0.2em black;
 	align-items: center;
     justify-content: center;
 }
 
-.title {
-	font-size: 5em;
-}
-
 h2 {
 	display: flex;
+    font-size: 1.5em;
 	text-decoration: underline overline white;
 	align-items: center;
     justify-content: center;
@@ -128,10 +160,25 @@ h2 img {
 	margin-right: 10px;
 }
 
-div {
-}
-.divTable .divTableCell, .divTable .divTableHead {
-}
+@media (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+  
+    h1 {
+      font-size: 1.75em;
+    }
+  
+    h2 {
+      font-size: 1.25em;
+    }
+  
+    .title {
+      font-size: 2.5em;
+    }
+  }
+  
+
 .divTable{ display: table; }
 .divTableRow { display: table-row; }
 .divTableHeading { display: table-header-group;}
@@ -184,28 +231,28 @@ img {
 }
 
 img.Feu {
-	border: 3px solid #B22222;
-	background-color: #FFDFDF;
+	background-color: #591408;
+    border: 3px solid #BB2222;
 }
 
 img.Eau {
-	border: 3px solid #4199FF;
-	background-color: #E1E1FF;
+	background-color: #143241;
+    border: 3px solid #479CBE;
 }
 
 img.For {
-	border: 3px solid #228B22;
-	background-color: #EAFEE2;
+	background-color: #1D3E15;
+    border: 3px solid #579B46;
 }
 
 img.Lum {
-	border: 3px solid #CEAB00;
-	background-color: #EFEFCA;
+	background-color: #44331A;
+    border: 3px solid #CF9C47;
 }
 
 img.Ten {
-	border: 3px solid #4B0082;
-	background-color: #EFCDF8;
+	background-color: #341E38;
+    border: 3px solid #A24EC4;
 }
 
 .image-container {
@@ -268,16 +315,19 @@ img.Ten {
 }
 
 #video-background {
-    position: fixed; /* Utilisez fixed plutôt qu'absolute pour le positionnement */
-    top: 50%;  /* Centrer verticalement */
-    left: 50%; /* Centrer horizontalement */
-    width: 100vw;  /* Largeur à 100% du viewport */
-    height: 100vh; /* Hauteur à 100% du viewport */
-    object-fit: cover; /* Gardez cover pour couvrir entièrement la zone */
-    transform: translate(-50%, -50%); /* Décaler la vidéo pour qu'elle soit centrée */
-    background-color: black; /* Fond noir */
-    z-index: -1; /* Gardez le z-index pour le positionnement en arrière-plan */
-    overflow: hidden; /* Pour éviter tout défilement */
+    position: fixed; /* Reste fixé à l'écran lors du défilement */
+    top: 0;  /* Commence au haut de l'écran */
+    left: 0; /* Commence à gauche de l'écran */
+    right: 0; /* S'étend jusqu'à droite de l'écran */
+    bottom: 0; /* S'étend jusqu'au bas de l'écran */
+    width: auto;  /* Largeur ajustée automatiquement */
+    height: auto; /* Hauteur ajustée automatiquement */
+    min-width: 100vw;  /* Largeur minimale de 100% du viewport */
+    min-height: 100vh; /* Hauteur minimale de 100% du viewport */
+    object-fit: cover; /* Couvre entièrement l'espace disponible sans altérer le ratio */
+    background-color: black; /* Fond noir en cas de problème d'affichage */
+    z-index: -1; /* S'assure que la vidéo reste en arrière-plan */
+    overflow: hidden; /* Cache les débordements éventuels */
 }
 
 .gallery {

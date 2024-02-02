@@ -24,7 +24,7 @@
 	<h1>Abaddon</h1>
 <div class="flex-container">
 		<li class="flex-item">
-			<p>L'Abaddon se réinitialise tous les 30 jours. Il est divisé en 3 niveaux de difficulté : Normal, Difficile et Enfer, avec chacun 100 étages à gravir. Si l'Abaddon normal peut se terminer sans trop de difficultés, les niveaux de difficulté supérieures nécessiteront des équipes bien conçu, et des serviteurs aux capacitées variées.</p>
+			<p>L'Abaddon se réinitialise tous les 30 jours. Il est divisé en 3 niveaux de difficulté : Normal, Difficile et Enfer, avec chacun 100 étages à gravir. Si l'Abaddon normal peut se terminer sans trop de difficultés, les niveaux de difficulté supérieures nécessiteront des équipes bien conçu, et des serviteurs aux capacitées variées. Les attaquants HP-based et antidef sont particulièrement efficaces selon les adversaires.</p>
 		</li>
 	</div>
 
@@ -44,7 +44,17 @@
 	</div>
 
 	<script src="js/main.js"></script>
-	<script>document.body.style.backgroundImage = "url('" + imgset() + "')";</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var imageUrl = imgset();
+			document.body.style.backgroundImage = "url('" + imageUrl + "')";
+			document.body.style.backgroundPosition = "center center";
+			document.body.style.backgroundSize = "cover";
+			document.body.style.backgroundRepeat = "no-repeat";
+			document.body.style.backgroundColor = "black";
+			document.body.style.backgroundAttachment = "fixed";
+		});
+	</script>
 
 </body>
 
