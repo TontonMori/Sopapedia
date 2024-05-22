@@ -183,8 +183,21 @@ function _makeRelationEffects($parent, s, list) {
                 $img = makeTagImage(servant.img, servant.name, servant.name, REL_ICON_WIDTH);
                 $img.appendTo($('<a>').attr('href', '#').appendTo($media));
             } else {
-                makeTagImageEmptyCharacter().appendTo($media);
-                // $media.attr('style', 'padding-left: ' + REL_ICON_WIDTH + 'px;'); 
+                var specialCases = {
+                    'Lucian, monarque de feu': PATH_IMAGE + 'Boss_Lucien.png',
+                    'Ragna, monarque d\'eau': PATH_IMAGE + 'Boss_Ragna.png',
+                    'Bastille, monarque de forêt': PATH_IMAGE + 'Boss_Bastille.png',
+                    'Présage': PATH_IMAGE + 'Boss_Omen.png',
+                    'Marie': PATH_IMAGE + 'Mary_Light.png',
+                    'L\'exécuteur': PATH_IMAGE + 'Judge_Light.png'
+                };
+                if (specialCases.hasOwnProperty(servant_or_name)) {
+                    var imgSrc = specialCases[servant_or_name];
+                    $img = makeTagImage(imgSrc, servant_or_name, servant_or_name, REL_ICON_WIDTH);
+                    $img.appendTo($('<a>').attr('href', '#').appendTo($media));
+                } else {
+                    makeTagImageEmptyCharacter().appendTo($media);
+                }
             }
 			if (item.length > 3) {
 				var value = item[3];
