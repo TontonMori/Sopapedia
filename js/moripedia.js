@@ -115,7 +115,6 @@ function makeTagImageEmptyCharacter() {
 }
 
 function makeServantInfo($parent, s) {
-    console.log(s.name);
     var $row = makeRow();
     var $frame = $('<div>', {'class': 'media'});
     var $media = $('<div>', {'class': 'media-left media-middle'});
@@ -369,25 +368,28 @@ function _makePassiveEffects($parent, list, isTeamBuff) {
             }
             $('<p>').html(desc).appendTo($media_body);
 
-        } else {    
+        } else {
             var cond_or_desc = item[0];
             var skill_effect = item[1];
             var level = item[2];
-            
+
             var desc = '<small class="condition">' + cond_or_desc + '</small> ' + skill_effect.text + '';
             if (level != 0) {
                 if (skill_effect.id.startsWith('B') || skill_effect.id.startsWith('D')) {
                 desc += ' (Niveau ' + level + ')';
                 } else if (skill_effect.id.startsWith('E')) {
-                desc = skill_effect.text.replace('{value}', level);
+                desc = '<small class="condition">' + cond_or_desc + '</small> ' + skill_effect.text.replace('{value}', level);
                 }
             }
             if (item.length > 3) {
                 var additional = item[3];
                 desc += ' <small class="additional">(' + additional + ')</small>';
             }
-
-            var $img = makeTagImage(skill_effect.img, skill_effect.text, skill_effect.desc, ICON_WIDTH);
+            if (isTeamBuff) {
+                var $img = makeTagImage(PATH_IMAGE + IMAGE_TEAM_BUFF, 'Bonus d\'équipe', 'Bonus d\'équipe', ICON_WIDTH);
+            } else {
+                var $img = makeTagImage(skill_effect.img, skill_effect.text, skill_effect.desc, ICON_WIDTH);
+            }
             $img.appendTo($('<a>').attr('href', '#').appendTo($media));
             $('<p>').html(desc).appendTo($media_body);
         }
