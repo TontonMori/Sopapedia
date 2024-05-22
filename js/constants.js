@@ -152,7 +152,7 @@ const DEBUFF = Object.freeze({
     BLOWING_BELLOWS: { text: 'Soufflets du maître', img: PATH_IMAGE + 'Buff_KeepWeaken_Mabel.png', desc: 'Augmente les dégâts subis par la cible de 30%, ne peut se dissiper (Forêt 10 sec, Lumière 20 sec).' },
     BRIGHT_LIGHT: { text: 'Lumière de l\'espérance', img: PATH_IMAGE + 'Buff_AttackPerDown.png', desc: 'Réduit l\'attaque (15% Feu, 25% Lumière), ne peut se dissiper (10 secondes).' },
     BLEEDING: { text: 'Saignement', img: PATH_IMAGE + 'Buff_Bleeding.png', desc: 'Inflige des dégâts en fonction de l\'attaque après 5 secondes, ne dépassant pas 50% des PV max de l\'ennemi. Ne peut se dissiper' },
-    POISON: { text: 'Poison', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 9% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
+    POISON: { text: 'Poison puissant', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 9% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
     POWERFUL_POISON: { text: 'Poison', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 15% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
     DISORIENTATION: { text: 'Désorientation', img: PATH_IMAGE + 'Buff_Stun.png', desc: 'Empêche la cible d\'utiliser des compétences. En JcJ, réduit son ATK et sa DEF (30% Feu, 50% Ténèbres)' },
     OZYMANDIAS: { text: 'Malédiction d\'Ozymandias', img: PATH_IMAGE + 'Buff_ImmuneHeal.png', desc: 'Réduit les soins reçus des guérisseurs et soutiens (20% Forêt, 40% Ténèbres)' }
@@ -235,6 +235,7 @@ const CONDITION = Object.freeze({
     FLAG_ATTACK_NORMAL: '[Attaque normale]',
     FLAG_ATTACK_CRITICAL: '[Attaque normale critique]',
     FLAG_START: '[Au début du combat]',
+    FLAG_PERMA: '[Permanent]',
 
     FLAG_TANK_ATTACKED: '[Tank frappé]',
     FLAG_TANK_ATTACKED_BY_SKILL: '[Tank frappé par aptitude]',
