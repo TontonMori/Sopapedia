@@ -109,7 +109,7 @@ const BUFF = Object.freeze({
     IYAGAGAK_OBESSION: { text: 'Obsession d\'Iyagagak', img: PATH_IMAGE + 'Buff_CriticalPowerUp.png', desc: 'Augmente les dégâts critiques si sous l\'effet d\'un buff. (Feu/Eau/Forêt 150 %, Lumière 300 %, Ténèbres 250 %)' },
     SHEEP_BLESSING: { text: 'Bénédiction Ovine', img: PATH_IMAGE + 'Buff_DefensePerUp_IgnoreDefense.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 70%' },
     DECREASE_IGNORE_DEF_DMG: { text: 'Résistance à l\'anti-def', img: PATH_IMAGE + 'Buff_DefensePerUp_IgnoreDefense.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 50%' },
-    OZYMANDIAS: { text: 'Immunité d\'Ozymandias', img: PATH_IMAGE + 'Buff_ImmuneIceStunSilence.png', desc: 'Confère l\'immunité à congélation, étourdissement, silence, désorientation, poison' }
+    OZYMANDIAS: { text: 'Recherche réussie', img: PATH_IMAGE + 'Buff_ImmuneIceStunSilence.png', desc: 'Confère l\'immunité à congélation, étourdissement, silence, désorientation, poison' }
 });
 
 const DEBUFF = Object.freeze({
