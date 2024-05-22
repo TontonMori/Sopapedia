@@ -108,7 +108,8 @@ const BUFF = Object.freeze({
     INFINITE_KNOWLEDGE: { text: 'Savoir infini', img: PATH_IMAGE + 'Buff_CriticalPowerUp.png', desc: 'Augmente les dégâts critiques. (Feu/Eau/Forêt 150 %, Lumière/Ténèbres 250 %)' },
     IYAGAGAK_OBESSION: { text: 'Obsession d\'Iyagagak', img: PATH_IMAGE + 'Buff_CriticalPowerUp.png', desc: 'Augmente les dégâts critiques si sous l\'effet d\'un buff. (Feu/Eau/Forêt 150 %, Lumière 300 %, Ténèbres 250 %)' },
     SHEEP_BLESSING: { text: 'Bénédiction Ovine', img: PATH_IMAGE + 'Buff_DefensePerUp_IgnoreDefense.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 70%' },
-    DECREASE_IGNORE_DEF_DMG: { text: 'Résistance à l\'anti-def', img: PATH_IMAGE + 'Buff_DefensePerUp_IgnoreDefense.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 50%' }
+    DECREASE_IGNORE_DEF_DMG: { text: 'Résistance à l\'anti-def', img: PATH_IMAGE + 'Buff_DefensePerUp_IgnoreDefense.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 50%' },
+    OZYMANDIAS: { text: 'Immunité d\'Ozymandias', img: PATH_IMAGE + 'Buff_ImmuneIceStunSilence.png', desc: 'Confère l\'immunité à congélation, étourdissement, silence, désorientation, poison' }
 });
 
 const DEBUFF = Object.freeze({
@@ -149,9 +150,13 @@ const DEBUFF = Object.freeze({
     ELECTRIC_SHOCK_MORE_DAMAGE: { text: 'Choc électrique', img: PATH_IMAGE + 'debuff_33_electric_shock_more_damage.png', desc: 'Augmente les dégâts subis, ne peut se dissiper' },
     ANKLE_CUT: { text: 'Taillade de la cheville', img: PATH_IMAGE + 'Buff_KeepWeaken_HastePerDown.png', desc: 'Réduit la vitesse de 30%, ne peut se dissiper (10 secondes).' },
     BLOWING_BELLOWS: { text: 'Soufflets du maître', img: PATH_IMAGE + 'Buff_KeepWeaken_Mabel.png', desc: 'Augmente les dégâts subis par la cible de 30%, ne peut se dissiper (Forêt 10 sec, Lumière 20 sec).' },
-    BRIGHT_LIGHT: { text: 'Lumière de l\'espérance', img: PATH_IMAGE + 'Buff_AttackPerDown.png', desc: 'Réduit l\'attaque (15 % Feu, 25 % Lumière), ne peut se dissiper (10 secondes).' },
+    BRIGHT_LIGHT: { text: 'Lumière de l\'espérance', img: PATH_IMAGE + 'Buff_AttackPerDown.png', desc: 'Réduit l\'attaque (15% Feu, 25% Lumière), ne peut se dissiper (10 secondes).' },
     BLEEDING: { text: 'Saignement', img: PATH_IMAGE + 'Buff_Bleeding.png', desc: 'Inflige des dégâts en fonction de l\'attaque après 5 secondes, ne dépassant pas 50% des PV max de l\'ennemi. Ne peut se dissiper' },
-    POISON: { text: 'Poison', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 9% des PV max en dégâts pendant sa durée, ne peut se dissiper.' }
+    POISON: { text: 'Poison', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 9% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
+    POWERFUL_POISON: { text: 'Poison', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 15% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
+    DISORIENTATION: { text: 'Désorientation', img: PATH_IMAGE + 'Buff_Stun.png', desc: 'Empêche la cible d\'utiliser des compétences. En JcJ, réduit son ATK et sa DEF (30% Feu, 50% Ténèbres)' },
+    OZYMANDIAS: { text: 'Malédiction d\'Ozymandias', img: PATH_IMAGE + 'Buff_ImmuneHeal.png', desc: 'Réduit les soins reçus des guérisseurs et soutiens (20% Forêt, 40% Ténèbres)' }
+
 });
 
 const EFFECT = Object.freeze({
@@ -201,6 +206,10 @@ const EFFECT = Object.freeze({
 	STUN_IMMUNE: { text: 'Immunité à l\'étourdissement', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à l\'étourdissement' },
 	FREEZE_IMMUNE: { text: 'Immunité au gel', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité au gel' },
 	DEF_DEBUFF_IMMUNE: { text: 'Immunité à Défense↓', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à Défense↓' },
+
+    LOST_BULLET_1: { text: 'Inflige des dégâts antidef à un autre ennemi aléatoire, max {value}% des PV de la cible', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Inflige des dégâts antidef à un autre ennemi aléatoire, max {value}% des PV de la cible' },
+    LOST_BULLET_2: { text: 'Inflige des dégâts antidef à deux autres ennemis aléatoires, max {value}% des PV des cibles', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Inflige des dégâts antidef à deux autres ennemis aléatoires, max {value}% des PV des cibles' },
+
 });
 
 const CONDITION = Object.freeze({
@@ -218,13 +227,14 @@ const CONDITION = Object.freeze({
     FLAG_NORMAL_ATTACKED: '[Attaque normale subie]',
     FLAG_SKILL_USE: '[Aptitude]',
     FLAG_SKILL_CRITICAL: '[Aptitude critique]',
-    FLAG_BRAND_USE: '[Combo]',
-    FLAG_BRAND_CRITICAL: '[Combo critique]',
-    FLAG_BRAND_BY_SEQUEL: '[Marque secondaire]',
+    FLAG_COMBO_USE: '[Combo]',
+    FLAG_COMBO_CRITICAL: '[Combo critique]',
+    FLAG_COMBO_BY_SEQUEL: '[Marque secondaire]',
     FLAG_EVERY_CRITICAL: '[Coup critique]',
     FLAG_EVERY_ATTACK: '[Toutes les attaques]',
     FLAG_ATTACK_NORMAL: '[Attaque normale]',
     FLAG_ATTACK_CRITICAL: '[Attaque normale critique]',
+    FLAG_START: '[Au début du combat]',
 
     FLAG_TANK_ATTACKED: '[Tank frappé]',
     FLAG_TANK_ATTACKED_BY_SKILL: '[Tank frappé par aptitude]',
@@ -248,6 +258,8 @@ const CONDITION = Object.freeze({
     FLAG_REMOVE_BUFF: '[Si des buffs sont dissipés chez l\'ennemi]',
     FLAG_BUFF_SELF: '[Sous l\'effet d\'un buff]',
 	FLAG_DEF_OVERFLOW: '[DEF > DEF ennemi]',
+    FLAG_BUFF_TRANSFORM_1: '[Transforme 1 buff]',
+    FLAG_BUFF_TRANSFORM_2: '[Transforme 2 buff]',
 
     FLAG_HP_DEATH: '[Si les PV tombent à 0]',
     FLAG_HP_LESS_70: '[En dessous de 70\% de PV]',
@@ -289,6 +301,7 @@ const CONDITION = Object.freeze({
     TARGET_ENEMY_DEBUFF_NO_REVIVAL: 'Ennemi sous Blocage de résurection',
     TARGET_ENEMY_DEBUFF_NO_BUFF: 'Ennemi sans buff',
     TARGET_ENEMY_DEBUFF_POISON: 'Ennemi empoisonné',
+    TARGET_ENEMY_DEBUFF_BLEEDING: 'Ennemi sous saignement',
     TARGET_ENEMY_CC_SILENCE: 'Ennemi sous silence',
 	TARGET_ENEMY_CC_STUN: 'Ennemi étourdi',
 	TARGET_ENEMY_CC_FREEZE: 'Ennemi gelé',
@@ -304,6 +317,7 @@ const CONDITION = Object.freeze({
 const NOR_1 = Object.freeze({
 	SPD40: 'Augmente la vitesse de 40',
 	CRI80: 'Augmente les dégâts critiques de 80%',
+    CRI580: 'Augmente les dégâts critiques de 580%',
 });
 
 const SPE_2 = Object.freeze({

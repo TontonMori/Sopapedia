@@ -115,6 +115,7 @@ function makeTagImageEmptyCharacter() {
 }
 
 function makeServantInfo($parent, s) {
+    console.log(s.name);
     var $row = makeRow();
     var $frame = $('<div>', {'class': 'media'});
     var $media = $('<div>', {'class': 'media-left media-middle'});
@@ -173,9 +174,9 @@ function _makeRelationEffects($parent, s, list) {
         if (condition.indexOf('allié') < 0)
             cls = 'condition';
         
-        if (typeof(item[0]) == 'string') {  
+        if (typeof(item[0]) == 'string') {
             var servant_or_name = item[0];
-            var key = getKey(servant_or_name, ELEMENT.FIRE);
+            var key = getKey(servant_or_name, ELEMENT.LIGHT);
             var $img = '';
             if (DICT_SERVANT[key] !== undefined) {
                 var servant = DICT_SERVANT[key];
@@ -189,7 +190,7 @@ function _makeRelationEffects($parent, s, list) {
 				var value = item[3];
 				$('<p>').html('<small class="' + cls + '">&lt;' + servant_or_name + ', ' + condition + '&gt;</small> ' + effect.text.replace('{value}', value)).appendTo($media_body);
 			} else {
-				$('<p>').html('<small class="' + cls + '">&lt;' + servant_or_name + ', ' + condition + '&gt;</small> ' + effect).appendTo($media_body);
+				$('<p>').html('<small class="' + cls + '">&lt;' + servant_or_name + ', ' + condition + '&gt;</small> ' + effect.text).appendTo($media_body);
 			}
         } else {  
             var role_or_type = item[0];
