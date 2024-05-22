@@ -109,7 +109,7 @@ const BUFF = Object.freeze({
     IYAGAGAK_OBESSION: { text: 'Obsession d\'Iyagagak', img: PATH_IMAGE + 'Buff_CriticalPowerUp.png', desc: 'Augmente les dégâts critiques si sous l\'effet d\'un buff. (Feu/Eau/Forêt 150 %, Lumière 300 %, Ténèbres 250 %)' },
     SHEEP_BLESSING: { text: 'Bénédiction Ovine', img: PATH_IMAGE + 'Buff_DefensePerUp_IgnoreDefense.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 70%' },
     DECREASE_IGNORE_DEF_DMG: { text: 'Résistance à l\'anti-def', img: PATH_IMAGE + 'Buff_DefensePerUp_IgnoreDefense.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de 50%' },
-    OZYMANDIAS: { text: 'Recherche réussie', img: PATH_IMAGE + 'Buff_ImmuneIceStunSilence.png', desc: 'Confère l\'immunité à congélation, étourdissement, silence, désorientation, poison' }
+    OZYMANDIAS: { text: 'Recherche réussie', img: PATH_IMAGE + 'Buff_RechercheReussie.png', desc: 'Confère l\'immunité à congélation, étourdissement, silence, désorientation, poison' }
 });
 
 const DEBUFF = Object.freeze({
@@ -125,7 +125,7 @@ const DEBUFF = Object.freeze({
     DOT_LIGHT: { text: 'Dégâts continus (lumière)', img: PATH_IMAGE + 'Buff_ContinuousLightDamage.png', desc: 'Inflige des dégâts égaux à 0,4% des PV max par niveau toutes les 3 secondes. (5 niveaux max)' },
     DOT_DARK: { text: 'Dégâts continus (ténèbres)', img: PATH_IMAGE + 'Buff_ContinuousDarkDamage.png', desc: 'Inflige des dégâts égaux à 0,4% des PV max par niveau toutes les 3 secondes. (5 niveaux max)' },
     CC_STUN: { text: 'Etourdissement', img: PATH_IMAGE + 'Buff_Stun.png', desc: 'Empêche toute action' },
-    REDUCED_HEAL: { text: 'Réduction de soin', img: PATH_IMAGE + 'Buff_ImmuneHeal.png', desc: 'Réduit les soins reçus de 50%' },
+    REDUCED_HEAL: { text: 'Réduction de soin', img: PATH_IMAGE + 'Debuff_ReducedHeal.png', desc: 'Réduit les soins reçus de 50%' },
     NO_HEAL: { text: 'Blocage de soin', img: PATH_IMAGE + 'Buff_ImmuneHeal.png', desc: 'Empêche de recevoir des soins' },
     NO_BUFF: { text: 'Antibuff', img: PATH_IMAGE + 'Buff_ImmuneRemoveWeaken.png', desc: 'Empêche de recevoir des buffs' },
     CC_FEAR: { text: 'Peur', img: PATH_IMAGE + 'Buff_Fear.png', desc: 'Empêche toute action' },
@@ -152,10 +152,10 @@ const DEBUFF = Object.freeze({
     BLOWING_BELLOWS: { text: 'Soufflets du maître', img: PATH_IMAGE + 'Buff_KeepWeaken_Mabel.png', desc: 'Augmente les dégâts subis par la cible de 30%, ne peut se dissiper (Forêt 10 sec, Lumière 20 sec).' },
     BRIGHT_LIGHT: { text: 'Lumière de l\'espérance', img: PATH_IMAGE + 'Buff_AttackPerDown.png', desc: 'Réduit l\'attaque (15% Feu, 25% Lumière), ne peut se dissiper (10 secondes).' },
     BLEEDING: { text: 'Saignement', img: PATH_IMAGE + 'Buff_Bleeding.png', desc: 'Inflige des dégâts en fonction de l\'attaque après 5 secondes, ne dépassant pas 50% des PV max de l\'ennemi. Ne peut se dissiper' },
-    POISON: { text: 'Poison puissant', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 9% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
-    POWERFUL_POISON: { text: 'Poison', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 15% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
-    DISORIENTATION: { text: 'Désorientation', img: PATH_IMAGE + 'Buff_Stun.png', desc: 'Empêche la cible d\'utiliser des compétences. En JcJ, réduit son ATK et sa DEF (30% Feu, 50% Ténèbres)' },
-    OZYMANDIAS: { text: 'Malédiction d\'Ozymandias', img: PATH_IMAGE + 'Buff_ImmuneHeal.png', desc: 'Réduit les soins reçus des guérisseurs et soutiens (20% Forêt, 40% Ténèbres)' }
+    POISON: { text: 'Poison', img: PATH_IMAGE + 'Buff_ContinuousNeutralDamage.png', desc: 'Inflige 9% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
+    POWERFUL_POISON: { text: 'Poison puissant', img: PATH_IMAGE + 'Debuff_PowerfulPoison.png', desc: 'Inflige 15% des PV max en dégâts pendant sa durée, ne peut se dissiper.' },
+    DISORIENTATION: { text: 'Désorientation', img: PATH_IMAGE + 'Buff_Confusion02.png', desc: 'Empêche la cible d\'utiliser des compétences. En JcJ, réduit son ATK et sa DEF (30% Feu, 50% Ténèbres)' },
+    OZYMANDIAS: { text: 'Alchimie effroyable', img: PATH_IMAGE + 'Debuff_ReducedHeal.png', desc: 'Réduit les soins reçus des guérisseurs et soutiens (20% Forêt, 40% Ténèbres)' }
 
 });
 
