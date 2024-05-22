@@ -247,6 +247,32 @@ function _makePotEffects($parent, list) {
     }
 }
 
+function _makeScrollablePotEffects($parent, list, type) {
+    var $scrollContainer;
+    var maxHeight;
+    if (type == 1) {
+        maxHeight = '400px';
+    } else {
+        maxHeight = '350px';
+    }
+    $scrollContainer = $('<div>', {'class': 'scrollable-container', 'style': 'max-height: ' + maxHeight});
+    for (var idx in list) {
+        var item = list[idx];
+        var $frame = $('<div>', {'class': 'media skill-list'});
+        var $media = $('<div>', {'class': 'media-left media-middle'});
+        var $media_body = $('<div>', {'class': 'media-body'});
+        var desc = item;
+        $('<p>').html(desc).appendTo($media_body);
+        $media.appendTo($frame);
+        $media_body.appendTo($frame);
+        $frame.appendTo($scrollContainer);
+        if (idx < list.length - 1) {
+            $('<hr>').appendTo($scrollContainer);
+        }
+    }
+    $scrollContainer.appendTo($parent);
+}
+
 function makePotInfo($parent, s) {
     $row = makeRow();
     var $c1 = makeCol(6);
@@ -258,11 +284,11 @@ function makePotInfo($parent, s) {
     _makePotEffects($c1, s.spe_2);
     makeHr().appendTo($c1);
     makeHead().text('Potentiel spécial 5').appendTo($c1);
-    _makePotEffects($c1, s.spe_5);
+    _makeScrollablePotEffects($c1, s.spe_5, 0);
     $c1.appendTo($row);
 
     makeHead().text('Potentiel spécial 4').appendTo($c2);
-    _makePotEffects($c2, s.spe_4);
+    _makeScrollablePotEffects($c2, s.spe_4, 1);
     $c2.appendTo($row);
     $row.appendTo($parent);
 }

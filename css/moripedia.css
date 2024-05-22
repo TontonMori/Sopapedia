@@ -298,3 +298,14 @@ span#resultFilter {
   background-image: url('../res/img/btn_cancel.png');
   background-size: 100% 34px;
 }
+
+.scrollable-container {
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.scrollable-container hr {
+  border: 0;
+  border-top: 1px solid #ffdf73;
+  margin: 10px 0;
+}

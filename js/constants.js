@@ -326,7 +326,16 @@ const SPE_2 = Object.freeze({
 });
 
 const SPE_4 = Object.freeze({
-
+    BOOST_ON_CRIT: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 14% lorsqu\'une aptitude active inflige un coup critique',
+    BOOST_ACTIVE_SUPP_ON_TANK_HIT: 'Augmente la jauge d\'aptitude active du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)',
+    BOOST_ON_STRIP: 'Augmente la jauge d\'aptitude de tous les alliés de 18% quand des buffs sont dissipés chez l\'ennemi',
+    SHIELD_ON_SKILL: 'Confère un bouclier à tous les alliés à hauteur de 18% des PV du lanceur durant 30s lors de l\'utilisation d\'une aptitude active',
+    REDUCE_DMG_ON_HEAL: 'Réduit les dégâts subis par tous les alliés de 28% pendant la durée de vos soins périodiques',
+    BOOST_ATK_ON_TANK_HIT: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)',
+    DEBUFF_ATK_ON_HIT: '18% de chances de réduire l\attaque de l\'ennemi (Nv.1) après n\'importe quelle attaque',
+    HEAL_ON_SKILL_DURING_HEAL: 'Soigne les PV de tous les alliés de 18% lors de l\'utilisation d\'une aptitude en étant affecté par des soins périodiques',
+    REDUCE_DMG_BY_COMBO_DURING_SHIELD: 'Réduit les dégâts subis par les aptitudes de combo de 60% durant bouclier',
+    BOOST_SUPP_ON_TANK_HIT: 'Augmente la jauge d\'aptitude de combo du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)',
 });
 
 const SPE_5 = Object.freeze({
