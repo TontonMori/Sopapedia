@@ -76,7 +76,7 @@ const DAMAGE_TYPE = Object.freeze({
 });
 
 const AOE = Object.freeze({
-    AOE: { id: 'AOE', text: 'Attaque de zone' },
+    AOE: { id: 'AOE', text: 'Attaque de zone', desc: 'Attaque de zone'}
 });
 
 const BUFF = Object.freeze({
@@ -169,10 +169,11 @@ const EFFECT = Object.freeze({
     SPD_UP: { text: 'Augmente la vitesse de {value}%', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Augmente la vitesse de {value}%' },
     ACC_UP: { text: 'Augmente la précision de {value}%', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Augmente la précision de {value}%' },
     RES_UP: { text: 'Augmente la résistance de {value}%', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Augmente la résistance de {value}%' },
+    GLANCING_MAX: { text: 'Augmente le taux de frappe oblique au maximum', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Augmente le taux de frappe oblique au maximum' },
 
-    REVIVAL_ALL: { text: 'Ressucite tous les alliés', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Ressucite tous les alliés', },
-    REVIVAL_1: { text: 'Ressucite un allié', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Ressucite un allié' },
-    REVIVAL_SELF: { text: 'Revient à la vie 1 fois par combat', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Revient à la vie 1 fois par combat' },
+    REVIVAL_ALL: { text: 'Ressucite tous les alliés avec {value}% des PV', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Ressucite tous les alliés avec {value}% des PV', },
+    REVIVAL_1: { text: 'Ressucite un allié avec {value}% des PV', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Ressucite un allié avec {value}% des PV' },
+    REVIVAL_SELF: { text: 'Soigne 100% des PV (1 fois par combat)', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Soigne 100% des PV (1 fois par combat)' },
 
     HEAL_BY_DEBUFF: { text: 'Soigne {value}% de PV par debuff', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Soigne {value}% de PV par debuff' },
     HEAL: { text: 'Soigne les alliés de {value}% de PV', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Soigne les alliés de {value}% de PV' },
@@ -184,7 +185,7 @@ const EFFECT = Object.freeze({
     COMBO_DMG_DOWN: { text: 'Réduit les dégâts subis d\'aptitudes de combo de {value}%', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Réduit les dégâts subis d\'aptitudes de combo de {value}%' },
     IGN_DMG_DOWN: { text: 'Réduit les dégâts subis d\'attaques anti-def de {value}%', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Réduit les dégâts subis d\'attaques anti-def de {value}%' },
     //MAX_DMG_OF_HP: { text: 'Dégâts maximum de {value}% des PV', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Dégâts maximum de {value}% des PV' }, // A remplacer par MAX_DMG_PER_HIT
-    MAX_DMG_PER_HIT: { text: 'Dégâts maximum de {value}% des PV par coup', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Dégâts maximum de {value}% des PV par coup' },
+    MAX_DMG_PER_HIT: { text: 'Dégâts maximum de {value}% des PV max par coup', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Dégâts maximum de {value}% des PV max par coup' },
     MULTIHIT_DMG_DOWN: { text: 'Réduit les dégâts d\'aptitudes de combo de {value}% à partir du second coup', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Réduit les dégâts d\'aptitudes de combo de {value}% à partir du second coup' },
     SKILL_CHARGE: { text: 'Augmente la jauge d\'aptitude de {value}%', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Augmente la jauge d\'aptitude de {value}%' },
     SKILL_DISCHARGE: { text: 'Réduit la jauge d\'aptitude de {value}%', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Réduit la jauge d\'aptitude de {value}%' },
@@ -200,12 +201,18 @@ const EFFECT = Object.freeze({
     REMOVE_BUFF_SHIELD: { text: 'Dissipe un bouclier', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Dissipe un bouclier' },
 	REMOVE_BUFF_SHIELDS: { text: 'Dissipe tous les boucliers', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Dissipe tous les boucliers' },
 	SPEED_EQUALIZER: { text: 'Vitesse ennemi = vitesse du lanceur', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Vitesse ennemi = vitesse du lanceur' },
-	
+    TRANSFER: { text: 'Transfère vers la cible', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Transfère vers la cible' },
+
 	SILENCE_IMMUNE: { text: 'Immunité au silence', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité au silence' },
 	PETRIFY_IMMUNE: { text: 'Immunité à pétrification', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à pétrification' },
 	STUN_IMMUNE: { text: 'Immunité à l\'étourdissement', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à l\'étourdissement' },
 	FREEZE_IMMUNE: { text: 'Immunité au gel', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité au gel' },
+    ATK_DEBUFF_IMMUNE: { text: 'Immunité à Attaque↓', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à Attaque↓' },
 	DEF_DEBUFF_IMMUNE: { text: 'Immunité à Défense↓', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à Défense↓' },
+    SPD_DEBUFF_IMMUNE: { text: 'Immunité à Vitesse↓', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à Vitesse↓' },
+    HEAL_DEBUFF_IMMUNE: { text: 'Immunité à la privation de soins', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Immunité à la privation de soins' },
+
+    ATK_FROM_HP: { text: 'Augmente les PV de {value}% de l\'attaque', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Augmente les PV de {value}\% de l\'attaque' },
 
     LOST_BULLET_1: { text: 'Inflige des dégâts antidef à un autre ennemi aléatoire, max {value}% des PV de la cible', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Inflige des dégâts antidef à un autre ennemi aléatoire, max {value}% des PV de la cible' },
     LOST_BULLET_2: { text: 'Inflige des dégâts antidef à deux autres ennemis aléatoires, max {value}% des PV des cibles', img: PATH_IMAGE + 'ico_empty_book.png', desc: 'Inflige des dégâts antidef à deux autres ennemis aléatoires, max {value}% des PV des cibles' },
@@ -236,6 +243,7 @@ const CONDITION = Object.freeze({
     FLAG_ATTACK_CRITICAL: '[Attaque normale critique]',
     FLAG_START: '[Au début du combat]',
     FLAG_PERMA: '[Permanent]',
+    FLAG_ELEMENTAL_MATCH: '[Même élément pour tous les alliés]',
 
     FLAG_TANK_ATTACKED: '[Tank frappé]',
     FLAG_TANK_ATTACKED_BY_SKILL: '[Tank frappé par aptitude]',
@@ -257,6 +265,7 @@ const CONDITION = Object.freeze({
     FLAG_REMOVE_DEBUFF_SELF: '[Si des debuffs sont dissipés]',
 	FLAG_REMOVE_DEBUFF_NONE: '[Aucun debuff dissipé]',
     FLAG_REMOVE_BUFF: '[Si des buffs sont dissipés chez l\'ennemi]',
+    FLAG_REMOVE_SHIELD: '[Si un bouclier est dissipé]',
     FLAG_BUFF_SELF: '[Sous l\'effet d\'un buff]',
 	FLAG_DEF_OVERFLOW: '[DEF > DEF ennemi]',
     FLAG_BUFF_TRANSFORM_1: '[Transforme 1 buff]',
@@ -295,9 +304,10 @@ const CONDITION = Object.freeze({
     TARGET_ENEMY_ALL: 'Tous les Ennemis',
     TARGET_ENEMY_SINGLE: 'Un seul ennemi',
     TARGET_ENEMY_BUFF_NO_DEBUFF: 'Ennemi sous immunité',
-    TARGET_ENEMY_NOT_DEBUFF_DEF: 'Ennemi sous défense↓',
-    TARGET_ENEMY_DEBUFF_SPD: 'Ennemis sous vitesse↓',
-    TARGET_ENEMY_DEBUFF_DEF: 'Ennemi sous défense↓',
+    TARGET_ENEMY_NOT_DEBUFF_DEF: 'Ennemi sans Défense↓',
+    TARGET_ENEMY_DEBUFF_ATK: 'Ennemi sous Attaque↓',
+    TARGET_ENEMY_DEBUFF_DEF: 'Ennemi sous Défense↓',
+    TARGET_ENEMY_DEBUFF_SPD: 'Ennemis sous Vitesse↓',
     TARGET_ENEMY_DEBUFF_MORE_DMG: 'Ennemi sous marque',
     TARGET_ENEMY_DEBUFF_NO_REVIVAL: 'Ennemi sous Blocage de résurection',
     TARGET_ENEMY_DEBUFF_NO_BUFF: 'Ennemi sans buff',
@@ -326,16 +336,16 @@ const SPE_2 = Object.freeze({
 });
 
 const SPE_4 = Object.freeze({
-    BOOST_ON_CRIT: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 14% lorsqu\'une aptitude active inflige un coup critique',
-    BOOST_ACTIVE_SUPP_ON_TANK_HIT: 'Augmente la jauge d\'aptitude active du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)',
-    BOOST_ON_STRIP: 'Augmente la jauge d\'aptitude de tous les alliés de 18% quand des buffs sont dissipés chez l\'ennemi',
-    SHIELD_ON_SKILL: 'Confère un bouclier à tous les alliés à hauteur de 18% des PV du lanceur durant 30s lors de l\'utilisation d\'une aptitude active',
-    REDUCE_DMG_ON_HEAL: 'Réduit les dégâts subis par tous les alliés de 28% pendant la durée de vos soins périodiques',
-    BOOST_ATK_ON_TANK_HIT: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)',
-    DEBUFF_ATK_ON_HIT: '18% de chances de réduire l\'attaque de l\'ennemi (Nv.1) après n\'importe quelle attaque',
-    HEAL_ON_SKILL_DURING_HEAL: 'Soigne les PV de tous les alliés de 18% lors de l\'utilisation d\'une aptitude en étant affecté par des soins périodiques',
-    REDUCE_DMG_BY_COMBO_DURING_SHIELD: 'Réduit les dégâts subis par les aptitudes de combo de 60% durant bouclier',
-    BOOST_SUPP_ON_TANK_HIT: 'Augmente la jauge d\'aptitude de combo du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)',
+    BOOST_ON_CRIT: { text: 'Boost sur coup critique', desc: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 14% lorsqu\'une aptitude active inflige un coup critique'},
+    BOOST_ACTIVE_SUPP_ON_TANK_HIT: { text: 'Boost apt. act. supp. sur tank touché', desc: 'Augmente la jauge d\'aptitude active du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
+    BOOST_ON_STRIP: { text: 'boost sur dissip.', desc: 'Augmente la jauge d\'aptitude de tous les alliés de 18% quand des buffs sont dissipés chez l\'ennemi'},
+    SHIELD_ON_SKILL: { text: 'bouclier sur apt.', desc: 'Confère un bouclier à tous les alliés à hauteur de 18% des PV du lanceur durant 30s lors de l\'utilisation d\'une aptitude active'},
+    REDUCE_DMG_ON_HEAL: { text: 'dégâts réduits pdt. soin', desc: 'Réduit les dégâts subis par tous les alliés de 28% pendant la durée de vos soins périodiques'},
+    BOOST_ATK_ON_TANK_HIT: { text: 'boost atq. sur tank touché', desc: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
+    DEBUFF_ATK_ON_HIT: { text: 'debuff atk.', desc: '18% de chances de réduire l\'attaque de l\'ennemi (Nv.1) après n\'importe quelle attaque'},
+    HEAL_ON_SKILL_DURING_HEAL: { text: 'soin sur apt. pdt. soin', desc: 'Soigne les PV de tous les alliés de 18% lors de l\'utilisation d\'une aptitude en étant affecté par des soins périodiques'},
+    REDUCE_DMG_BY_COMBO_DURING_SHIELD: { text: 'réd. dég. combo pdt. bouclier', desc: 'Réduit les dégâts subis par les aptitudes de combo de 60% durant bouclier'},
+    BOOST_SUPP_ON_TANK_HIT: { text: 'Boost combo supp. sur tank touché', desc: 'Augmente la jauge d\'aptitude de combo du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
 });
 
 const SPE_5 = Object.freeze({

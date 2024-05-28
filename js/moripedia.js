@@ -74,7 +74,7 @@ function makeTagImage(img_src, img_name, desc, width, height) {
     return $img;
 }
 
-function makeSkillImage(img_src, element, width, height) {
+/*function makeSkillImage(img_src, element, width, height) {
     var background_img_src = PATH_IMAGE + 'skill_' + element + '.png';
 
     var $c = $('<div>', { 
@@ -95,7 +95,7 @@ function makeSkillImage(img_src, element, width, height) {
     $skillImg.appendTo($c);
 
     return $c;
-}
+}*/
 
 function makeTagImageEmptySkill() {
     var $img = makeTagImage(PATH_IMAGE + IMAGE_EMPTY_EFFECT, 'effet', 'effet', ICON_WIDTH - 4);   
@@ -105,6 +105,7 @@ function makeTagImageEmptySkill() {
 
     return $img;
 }
+
 function makeTagImageEmptyCharacter() {
     var $img = makeTagImage(PATH_IMAGE + IMAGE_EMPTY_CHARACTER, 'image cible', '', REL_ICON_WIDTH - 4, REL_ICON_HEIGHT - 4);   
     $img.attr('style', $img.attr('style') + '; margin: 2px;');
@@ -260,7 +261,7 @@ function _makeScrollablePotEffects($parent, list, type) {
         var $frame = $('<div>', {'class': 'media skill-list'});
         var $media = $('<div>', {'class': 'media-left media-middle'});
         var $media_body = $('<div>', {'class': 'media-body'});
-        var desc = item;
+        var desc = item.desc;
         $('<p>').html(desc).appendTo($media_body);
         $media.appendTo($frame);
         $media_body.appendTo($frame);
@@ -293,49 +294,53 @@ function makePotInfo($parent, s) {
 }
 
 function _makeSkillEffects($parent, list) {
-    for (var idx in list) {
-        var item = list[idx];
-        var $frame = $('<div>', {'class': 'media skill-list'});
-        var $media = $('<div>', {'class': 'media-left media-middle'});
-        var $media_body = $('<div>', {'class': 'media-body'});
-        var desc = '';
-
-        if (typeof(item[0]) == 'string' && typeof(item[1]) == 'number') {
-            if (item.length > 2) {
-                var additional = item[2];
-                desc += ' <small class="additional">(' + additional + ')</small>';
+    for (let idx in list) {
+        const item = list[idx];
+        const $frame = $('<div>', {'class': 'media skill-list'});
+        const $media = $('<div>', {'class': 'media-left media-middle'});
+        const $media_body = $('<div>', {'class': 'media-body'});
+        let desc = '';
+        const skill_effect = item[0];
+        let value = 0;
+        let suffix = '';
+        if (typeof item[1] === 'number') {
+            value = item[1];
+            if (item[2]) {
+                suffix = item[2];
             }
-            makeTagImageEmptySkill().appendTo($media);
-        } else if (typeof(item[0]) == 'string') {  
-            var cond_or_desc = item[0];
-            desc = cond_or_desc;
-            if (item.length > 1) {
-                var additional = item[1];
-                desc += ' <small class="additional">(' + additional + ')</small>';
-            }
-            makeTagImageEmptySkill().appendTo($media);
-        } else {
-            var skill_effect = item[0];
-            var level = item[1];
-
-            if ((skill_effect.id) && typeof(item[1]) == 'number') {
-                if (skill_effect.id.startsWith('Z')) {
-                    desc = skill_effect.text + ', ' + (level == 1 ? level + ' coup' : level + ' coups');
-                } else if (skill_effect.id.startsWith('B') || skill_effect.id.startsWith('D')) {
-                    desc = skill_effect.text;
-					if (level != 0) {
-						desc += ' ' + '(Niveau ' + level + ')';
-					}
-				} else if (skill_effect.id.startsWith('E')) {
-                    desc = skill_effect.text.replace('{value}', level);
-                }
-            } else {
-                desc = skill_effect.text.replace('{value}', level);
-            }
-
-            var $img = makeTagImage(skill_effect.img, skill_effect.text, skill_effect.desc, ICON_WIDTH);
-            $img.appendTo($('<a>').attr('href', '#').appendTo($media));
+        } else if (item[1]) {
+            suffix = item[1].text;
         }
+        if (skill_effect.id) {
+            switch (true) {
+                case skill_effect.id.startsWith('Z'):
+                    desc = skill_effect.text;
+                    if (value !== 0) {
+                        desc += ', ' + (value === 1 ? value + ' coup' : value + ' coups');
+                    }
+                    break;
+                case skill_effect.id.startsWith('B'):
+                case skill_effect.id.startsWith('D'):
+                    desc = skill_effect.text;
+                    if (value !== 0) {
+                        desc += ' (Niveau ' + value + ')';
+                    }
+                    break;
+                case skill_effect.id.startsWith('E'):
+                    desc = skill_effect.text.replace('{value}', value);
+                    break;
+                default:
+                    desc = skill_effect.text;
+            }
+        } else {
+            desc = skill_effect.text.replace('{value}', value);
+        }
+        if (suffix) {
+            const suffixText = typeof suffix === 'string' ? suffix : suffix.text;
+            desc += ` <small class="additional">(${suffixText})</small>`;
+        }
+        const $img = makeTagImage(skill_effect.img, skill_effect.text, skill_effect.desc, ICON_WIDTH);
+        $img.appendTo($('<a>').attr('href', '#').appendTo($media));
         $('<p>').html(desc).appendTo($media_body);
         $media.appendTo($frame);
         $media_body.appendTo($frame);
@@ -344,55 +349,50 @@ function _makeSkillEffects($parent, list) {
 }
 
 function _makePassiveEffects($parent, list, isTeamBuff) {
-    for (var idx in list) {
-        var item = list[idx];
-        
-        var $frame = $('<div>', {'class': 'media skill-list'});
-        var $media = $('<div>', {'class': 'media-left media-middle'});
-        var $media_body = $('<div>', {'class': 'media-body'});
-        if (typeof(item[1]) == 'string') {  
-            var cond_or_desc = item[0];
-            var effect = item[1];
-			var value = item[2]
-            var additional = item[3];
-            var desc = '<small class="condition">' + cond_or_desc + '</small> ' + effect.replace('{value}', value);
-            if (item.length > 3)
-                desc += ' <small class="additional">(' + additional + ')</small>';
-
-            if (isTeamBuff) {
-                var $img = makeTagImage(PATH_IMAGE + IMAGE_TEAM_BUFF, 'Bonus d\'équipe', 'Bonus d\'équipe', ICON_WIDTH);
-                $img.appendTo($('<a>').attr('href', '#').appendTo($media));
+    for (let idx in list) {
+        let item = list[idx];
+        let $frame = $('<div>', {'class': 'media skill-list'});
+        let $media = $('<div>', {'class': 'media-left media-middle'});
+        let $media_body = $('<div>', {'class': 'media-body'});
+        let prefix = item[0];
+        let passive_effect = item[1];
+        let value = 0;
+        let suffix = '';
+        let desc = '';
+        if (item[2]) {
+            if (typeof item[2] === 'number') {
+                value = item[2];
+                if (item[3]) {
+                    suffix = item[3];
+                }
             } else {
-                makeTagImageEmptySkill().appendTo($media);
-                // $media.attr('style', 'padding-left: ' + ICON_WIDTH + 'px;'); 
+                suffix = item[2];
             }
-            $('<p>').html(desc).appendTo($media_body);
-
+        }
+        if (typeof passive_effect === 'string') {
+            desc = `<small class="condition">${prefix}</small> ${passive_effect.replace('{value}', value)}`;
+            makeTagImageEmptySkill().appendTo($media);
         } else {
-            var cond_or_desc = item[0];
-            var skill_effect = item[1];
-            var level = item[2];
-
-            var desc = '<small class="condition">' + cond_or_desc + '</small> ' + skill_effect.text + '';
-            if (level != 0) {
-                if (skill_effect.id.startsWith('B') || skill_effect.id.startsWith('D')) {
-                desc += ' (Niveau ' + level + ')';
-                } else if (skill_effect.id.startsWith('E')) {
-                desc = '<small class="condition">' + cond_or_desc + '</small> ' + skill_effect.text.replace('{value}', level);
+            desc = `<small class="condition">${prefix}</small> ${passive_effect.text}`;
+            if (value != 0) {
+                if (passive_effect.id.startsWith('B') || passive_effect.id.startsWith('D')) {
+                    desc += ` (Niveau ${value})`;
+                } else if (passive_effect.id.startsWith('E')) {
+                    desc = `<small class="condition">${prefix}</small> ${passive_effect.text.replace('{value}', value)}`;
                 }
             }
-            if (item.length > 3) {
-                var additional = item[3];
-                desc += ' <small class="additional">(' + additional + ')</small>';
-            }
+            let $img;
             if (isTeamBuff) {
-                var $img = makeTagImage(PATH_IMAGE + IMAGE_TEAM_BUFF, 'Bonus d\'équipe', 'Bonus d\'équipe', ICON_WIDTH);
+                $img = makeTagImage(PATH_IMAGE + IMAGE_TEAM_BUFF, 'Bonus d\'équipe', 'Bonus d\'équipe', ICON_WIDTH);
             } else {
-                var $img = makeTagImage(skill_effect.img, skill_effect.text, skill_effect.desc, ICON_WIDTH);
+                $img = makeTagImage(passive_effect.img, passive_effect.text, passive_effect.desc, ICON_WIDTH);
             }
             $img.appendTo($('<a>').attr('href', '#').appendTo($media));
-            $('<p>').html(desc).appendTo($media_body);
         }
+        if (suffix) {
+            desc += ` <small class="additional">(${suffix})</small>`;
+        }
+        $('<p>').html(desc).appendTo($media_body);
         $media.appendTo($frame);
         $media_body.appendTo($frame);
         $frame.appendTo($parent);
@@ -450,12 +450,29 @@ function _makeFilterItem(label_idx, label, desc, img_src, filter_attr, filter_ke
     
     var funcFilterEffect = function(thisCb, id_affix) {
         var map_filter;
-        if (id_affix == 'efde')     map_filter = MAP_FILTER_DEBUFF;
-        else if (id_affix == 'efbu')     map_filter = MAP_FILTER_BUFF;
-        else if (id_affix == 're')       map_filter = MAP_FILTER_RELATION;
-        else if (id_affix == 'efut')       map_filter = MAP_FILTER_EFFECT;
-        else if (id_affix == 'spe4')       map_filter = MAP_FILTER_SPE_4;
-        else if (id_affix == 'spe5')       map_filter = MAP_FILTER_SPE_5;
+        switch (id_affix) {
+            case 'efde':
+                map_filter = MAP_FILTER_DEBUFF;
+                break;
+            case 'efbu':
+                map_filter = MAP_FILTER_BUFF;
+                break;
+            case 're':
+                map_filter = MAP_FILTER_RELATION;
+                break;
+            case 'efut':
+                map_filter = MAP_FILTER_EFFECT;
+                break;
+            case 'spe4':
+                map_filter = MAP_FILTER_SPE_4;
+                break;
+            case 'spe5':
+                map_filter = MAP_FILTER_SPE_5;
+                break;
+            default:
+                console.error('Unknown filter type:', id_affix);
+                return;
+        }
 
         map_filter[label_idx] = thisCb.checked;
         
@@ -617,7 +634,7 @@ function initData() {
     });
     Object.keys(BUFF).forEach((key, idx) => {
         MAP_FILTER_BUFF[idx] = false;
-        BUFF[key].id = 'B' + idx;    
+        BUFF[key].id = 'B' + idx;
         var o = BUFF[key];
         if (o.hide !== undefined)   return;     
         var $item = _makeFilterItem(idx, o.text, o.desc, o.img, ATTR_FILTER_BUFF, key, 'efbu');
@@ -660,7 +677,7 @@ function initData() {
 
     var TEMP_FILTER_SET_RELATION_ENEMY = new Set();     
     var TEMP_FILTER_SET_RELATION_ALLY = new Set();
-    var count = 0;      
+    var count = 0;
     Object.keys(SERVANT_NAME).reverse().forEach(k => {
         count++;
         for (idx in ELEMENT) {
@@ -703,7 +720,7 @@ function initData() {
             var data_debuff = '';
             var data_buff = '';
             var data_effect = '';
-            var appendEffectList = function(eff, trg) {
+            var appendEffectList = function(eff) {
                 if (typeof(eff) !== 'string') {
                     if (eff.id.startsWith('D')) {
                         data_debuff += eff.id.substr(1) + ',';
@@ -724,10 +741,20 @@ function initData() {
             $tr.attr(ATTR_FILTER_EFFECT, data_effect);
             $tr.attr(ATTR_FILTER_TEAMBUFF, s.team_buff[0][0]);
 
-            var spe_4_ids = s.spe_4 ? s.spe_4.map(pot => 'S4' + pot).join(',') : '';
-            $tr.attr(ATTR_FILTER_SPE_4, spe_4_ids);
+            var appendSpecialEffectIds = function(eff, result) {
+                if (typeof(eff) !== 'string' && eff.id) {
+                    result.push(eff.id.substr(2));
+                }
+            };
 
-            var spe_5_ids = s.spe_5 ? s.spe_5.map(pot => 'S5' + pot).join(',') : '';
+            var spe_4_ids_array = [];
+            s.spe_4.forEach(pot => { appendSpecialEffectIds(pot, spe_4_ids_array); });
+            var spe_4_ids = spe_4_ids_array.join(',');
+            $tr.attr(ATTR_FILTER_SPE_4, spe_4_ids);
+    
+            var spe_5_ids_array = [];
+            s.spe_5.forEach(pot => { appendSpecialEffectIds(pot, spe_5_ids_array); });
+            var spe_5_ids = spe_5_ids_array.join(',');
             $tr.attr(ATTR_FILTER_SPE_5, spe_5_ids);
 
             sname = s.rel_1[0][0];
