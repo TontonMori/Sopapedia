@@ -336,18 +336,27 @@ const SPE_2 = Object.freeze({
 });
 
 const SPE_4 = Object.freeze({
-    BOOST_ON_CRIT: { text: 'Boost sur coup critique', desc: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 14% lorsqu\'une aptitude active inflige un coup critique'},
-    BOOST_ACTIVE_SUPP_ON_TANK_HIT: { text: 'Boost apt. act. supp. sur tank touché', desc: 'Augmente la jauge d\'aptitude active du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
-    BOOST_ON_STRIP: { text: 'boost sur dissip.', desc: 'Augmente la jauge d\'aptitude de tous les alliés de 18% quand des buffs sont dissipés chez l\'ennemi'},
-    SHIELD_ON_SKILL: { text: 'bouclier sur apt.', desc: 'Confère un bouclier à tous les alliés à hauteur de 18% des PV du lanceur durant 30s lors de l\'utilisation d\'une aptitude active'},
-    REDUCE_DMG_ON_HEAL: { text: 'dégâts réduits pdt. soin', desc: 'Réduit les dégâts subis par tous les alliés de 28% pendant la durée de vos soins périodiques'},
-    BOOST_ATK_ON_TANK_HIT: { text: 'boost atq. sur tank touché', desc: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
-    DEBUFF_ATK_ON_HIT: { text: 'debuff atk.', desc: '18% de chances de réduire l\'attaque de l\'ennemi (Nv.1) après n\'importe quelle attaque'},
-    HEAL_ON_SKILL_DURING_HEAL: { text: 'soin sur apt. pdt. soin', desc: 'Soigne les PV de tous les alliés de 18% lors de l\'utilisation d\'une aptitude en étant affecté par des soins périodiques'},
-    REDUCE_DMG_BY_COMBO_DURING_SHIELD: { text: 'réd. dég. combo pdt. bouclier', desc: 'Réduit les dégâts subis par les aptitudes de combo de 60% durant bouclier'},
-    BOOST_SUPP_ON_TANK_HIT: { text: 'Boost combo supp. sur tank touché', desc: 'Augmente la jauge d\'aptitude de combo du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
+    BOOST_ON_CRIT: { text: 'Boost sur coup critique', img: PATH_IMAGE + 'spe4.png', desc: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 14% lorsqu\'une aptitude active inflige un coup critique'},
+    BOOST_ACTIVE_SUPP_ON_TANK_HIT: { text: 'Boost apt. act. supp. sur tank touché', img: PATH_IMAGE + 'spe4.png', desc: 'Augmente la jauge d\'aptitude active du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
+    BOOST_ON_STRIP: { text: 'boost sur dissip.', img: PATH_IMAGE + 'spe4.png', desc: 'Augmente la jauge d\'aptitude active de tous les alliés de 18% quand des buffs sont dissipés chez l\'ennemi'},
+    SHIELD_ON_SKILL: { text: 'bouclier sur apt.', img: PATH_IMAGE + 'spe4.png', desc: 'Confère un bouclier à tous les alliés à hauteur de 18% des PV du lanceur durant 30s lors de l\'utilisation d\'une aptitude active'},
+    REDUCE_DMG_ON_HEAL: { text: 'dégâts réduits pdt. soin', img: PATH_IMAGE + 'spe4.png', desc: 'Réduit les dégâts subis par tous les alliés de 28% pendant la durée de vos soins périodiques'},
+    BOOST_ATK_ON_TANK_HIT: { text: 'boost atq. sur tank touché', img: PATH_IMAGE + 'spe4.png', desc: 'Augmente la jauge d\'aptitude de combo des serviteurs d\'attaque de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
+    DEBUFF_ATK_ON_HIT: { text: 'debuff atk.', img: PATH_IMAGE + 'spe4.png', desc: '18% de chances de réduire l\'attaque de l\'ennemi (Nv.1) après n\'importe quelle attaque'},
+    HEAL_ON_SKILL_DURING_HEAL: { text: 'soin sur apt. pdt. soin', img: PATH_IMAGE + 'spe4.png', desc: 'Soigne les PV de tous les alliés de 18% lors de l\'utilisation d\'une aptitude en étant affecté par des soins périodiques'},
+    REDUCE_DMG_BY_COMBO_DURING_SHIELD: { text: 'réd. dég. combo pdt. bouclier', img: PATH_IMAGE + 'spe4.png', desc: 'Réduit les dégâts subis par les aptitudes de combo de 60% durant bouclier'},
+    BOOST_SUPP_ON_TANK_HIT: { text: 'Boost combo supp. sur tank touché', img: PATH_IMAGE + 'spe4.png', desc: 'Augmente la jauge d\'aptitude de combo du lanceur ainsi que celle des serviteurs de soutien de 10% lorsqu\'un tank allié est touché (rechargement: 6 secondes)'},
+    IMMUNITY_ON_CRIT: { text: 'Immunité sur crit.', img: PATH_IMAGE + 'spe4.png', desc: '92% de chances de conférer l\'immunité à tous les alliés lorsqu\'une aptitude active inflige un coup critique'},
 });
 
 const SPE_5 = Object.freeze({
-
+    REDUCE_CRIT_DMG: { text: 'Réduction dégâts crit.', img: PATH_IMAGE + 'spe5.png', desc: 'Réduit les dégâts subis de 50% en étant touché par une aptitude infligeant un coup critique'},
+    INCREASE_DAMAGE_AGAINST_DEF_BUFF: { text: 'Augmente les dgts contre buff def', img: PATH_IMAGE + 'spe5.png', desc: 'Augmente les dégâts de 150% en attaquant un ennemi doté d\'un buff [Défense↑] lors d\'un combo'},
+    INCREASE_ATK_REMAINING_HP: { text: 'Augmente l\'ATK si plus de x% de PV', img: PATH_IMAGE + 'spe5.png', desc: 'Augmente l\'attaque de 150% si les PV sont supérieurs à 60%'},
+    INSTANT_COMBO: { text: 'Combo Instantannée', img: PATH_IMAGE + 'spe5.png', desc: '50% de chances de commencer le combat avec la jauge d\'aptitude de combo chargée'},
+    IMMUNITY_ON_SKILL: { text: 'Immunité sur apt.', img: PATH_IMAGE + 'spe4.png', desc: 'Confère l\'immunité à tous les alliés lors de l\'utilisation d\'une aptitude'},
+    INCREASED_DAMAGE_DEBUFF: { text: 'Débuff [Dégâts subis↑]', img: PATH_IMAGE + 'spe5.png', desc: '90% de chances d\'infliger le débuff spécial [Dégâts subis↑] à la cible lors de l\'utilisation d\'une aptitude active.'},
+    HEAL_ON_SKILL: { text: 'Soin sur aptitude', img: PATH_IMAGE + 'spe5.png', desc: 'Soigne les PV de tous les alliés de 15% lors de l\'utilisation d\'une aptitude'},
 });
+
+//: { text: '', img: PATH_IMAGE + 'spe5.png', desc: ''},
