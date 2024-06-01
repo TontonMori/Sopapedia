@@ -134,7 +134,7 @@ function responsiveNavbar() {
 
 //Ouverture d'une galerie d'images
 function openModal(img) {
-  var modal = document.getElementById("myModal");
+  var modal = document.getElementById("ModalGallery");
   var modalImg = document.getElementById("img01");
   modal.style.display = "block";
   modalImg.src = img.src;
@@ -142,6 +142,6 @@ function openModal(img) {
 
 //Fermeture d'une galerie d'images
 function closeModal() {
-  var modal = document.getElementById("myModal");
+  var modal = document.getElementById("ModalGallery");
   modal.style.display = "none";
 }
