@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				{ text: "Raid mondial et raid de guilde", href: "raid.html" },
 				{ text: "Raid de groupe", href: "groupe.html" },
 				{ text: "Donjons d'équipement", href: "donjon.html" },
-				{ text: "Donjons d'éveil", href: "hall.html" },
+				{ text: "Donjons d'éveil", href: "eveil.html" },
 				{ text: "JcJ Infini, combat mondial", href: "jcj.html" },
 				{ text: "Donjons secrets", href: "sd.html" },
             ]
